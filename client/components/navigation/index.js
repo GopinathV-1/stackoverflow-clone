@@ -31,6 +31,9 @@ const Navigation = () => {
       >
         <span>Users</span>
       </NavItem>
+      <NavItem href="/unanswered" selected={router.pathname == '/unanswered'}>
+        <span>Unanswered</span>
+      </NavItem>
     </nav>
   )
 }
