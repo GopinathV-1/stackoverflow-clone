@@ -91,7 +91,6 @@ const UnAnsweredPage = () => {
                 {(() => {
                   return (
                     <>
-                      {localStorage.getItem('Some Question pending')}
                       <QuestionStats
                         voteCount={votes.length}
                         answerCount={answers.length}
@@ -122,4 +121,3 @@ const UnAnsweredPage = () => {
 }
 
 export default UnAnsweredPage
-
