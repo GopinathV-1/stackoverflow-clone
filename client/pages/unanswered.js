@@ -18,6 +18,9 @@ const UnAnsweredPage = () => {
   const [questions, setQuestions] = useState(null)
   const [sortType, setSortType] = useState('Votes')
 
+  //  let there is no problem
+  let flag = 1
+
   useEffect(() => {
     const fetchQuestion = async () => {
       const { data } = await publicFetch.get('/question')
@@ -59,7 +62,6 @@ const UnAnsweredPage = () => {
           Stackoverflow
         </title>
       </Head>
-
       <PageTitle
         title={
           router.query.tag
@@ -69,20 +71,17 @@ const UnAnsweredPage = () => {
         button
         borderBottom={false}
       />
-
       <ButtonGroup
         borderBottom
         buttons={['Votes', 'Views', 'Newest', 'Oldest']}
         selected={sortType}
         setSelected={setSortType}
       />
-
       {!questions && (
         <div className="loading">
           <Spinner />
         </div>
       )}
-
       {questions
         ?.sort(handleSorting())
         .map(
@@ -105,6 +104,8 @@ const UnAnsweredPage = () => {
                         createdTime={created}
                       >
                         {text}
+                        {/* To set the flag there is a problem */}
+                        {(flag = 0)}
                       </QuestionSummary>
                     </>
                   )
@@ -112,6 +113,9 @@ const UnAnsweredPage = () => {
               </QuestionWrapper>
             ) : null
         )}
+      {flag ? (
+        <QuestionWrapper>Looks Like No Problem for Now!!!</QuestionWrapper>
+      ) : null}
     </Layout>
   )
 }
