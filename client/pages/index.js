@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { publicFetch } from '../util/fetcher'
 
 import Layout from '../components/layout'
+import SearchInput from '../components/search-input'
 import QuestionWrapper from '../components/question/question-wrapper'
 import QuestionStats from '../components/question/question-stats'
 import QuestionSummary from '../components/question/question-summary'
@@ -17,13 +18,10 @@ const HomePage = () => {
 
   const [questions, setQuestions] = useState(null)
   const [sortType, setSortType] = useState('Votes')
+  const [searchTerm, setSearchTerm] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const fetchQuestion = async () => {
-      const { data } = await publicFetch.get('/question')
-      setQuestions(data)
-    }
-
     const fetchQuestionByTag = async () => {
       const { data } = await publicFetch.get(`/questions/${router.query.tag}`)
       setQuestions(data)
@@ -32,9 +30,25 @@ const HomePage = () => {
     if (router.query.tag) {
       fetchQuestionByTag()
     } else {
+      if (searchTerm === null || searchTerm === '') {
+      const fetchQuestion = async () => {
+        const { data } = await publicFetch.get('/question')
+        setQuestions(data)
+      }
       fetchQuestion()
+      } else {
+        const delayDebounceFn = setTimeout(async () => {
+          setLoading(true)
+          const { data } = await publicFetch.get(
+            searchTerm ? `/question/${searchTerm}` : `/title`
+            )
+          setQuestions(data)
+          setLoading(false)
+        }, 500)
+      return () => clearTimeout(delayDebounceFn)
+      }
     }
-  }, [router.query.tag])
+  }, [ router.query.tag, searchTerm])
 
   const handleSorting = () => {
     switch (sortType) {
@@ -61,7 +75,14 @@ const HomePage = () => {
       </Head>
 
       <PageTitle title={router.query.tag ? `Questions tagged [${router.query.tag}]` : 'All Questions'} button borderBottom={false} />
-
+      <SearchInput
+        placeholder="Search by title"
+        isLoading={loading}
+        autoFocus
+        autoComplete="off"
+        type="text"
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <ButtonGroup
         borderBottom
         buttons={['Votes', 'Views', 'Newest', 'Oldest']}
