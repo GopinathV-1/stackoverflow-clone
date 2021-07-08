@@ -104,6 +104,7 @@ const QuestionDetail = ({ questionId, title }) => {
                     <PostVote
                       score={answer.score}
                       votes={answer.votes}
+                      approve={answer.approved}
                       answerId={answer.id}
                       questionId={questionId}
                       setQuestion={setQuestion}

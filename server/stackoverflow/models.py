@@ -11,10 +11,10 @@ class Profile(models.Model):
 
     # one to one relation with user
     user = models.OneToOneField(
-            User,
-            related_name='profile',
-            on_delete=models.CASCADE
-        )
+        User,
+        related_name='profile',
+        on_delete=models.CASCADE
+    )
 
     # role attribute default to user
     role = models.CharField(max_length=100, default='user')
@@ -77,11 +77,17 @@ class Answer(models.Model):
     '''
     Answer Model represents the answer data in Database
     '''
+    # Choice for approved
+    approved_choices = (
+        (1, 'Approved'),
+        (-1, 'Disapproved')
+    )
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
     score = models.IntegerField(default=0)
+    approved = models.IntegerField(default=0, choices=approved_choices)
     question = models.ForeignKey(Question, related_name='answers',
                                  on_delete=models.CASCADE)
 

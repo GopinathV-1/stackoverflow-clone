@@ -7,9 +7,19 @@ import ModalContext from '../../../store/modal'
 import Button from '../../button'
 import { ArrowUp, ArrowDown } from '../../icons'
 
+import { VscCheck, VscError } from 'react-icons/vsc'
+import { BsFillClockFill } from 'react-icons/bs'
+
 import styles from './post-vote.module.css'
 
-const PostVote = ({ score, votes, questionId, answerId, setQuestion }) => {
+const PostVote = ({
+  score,
+  votes,
+  approve,
+  questionId,
+  answerId,
+  setQuestion
+}) => {
   const { authState, isAuthenticated } = useContext(AuthContext)
   const { authAxios } = useContext(FetchContext)
   const { handleComponentVisible } = useContext(ModalContext)
@@ -58,6 +68,16 @@ const PostVote = ({ score, votes, questionId, answerId, setQuestion }) => {
         <ArrowUp className={isUpVoted() ? styles.voted : ''} />
       </Button>
       <div className={styles.score}>{score}</div>
+      <div className={styles.score}>
+        {console.log(approve)}
+        {approve === undefined ? null : approve === 1 ? (
+          <VscCheck />
+        ) : approve === -1 ? (
+          <VscError />
+        ) : (
+          <BsFillClockFill />
+        )}
+      </div>
       <Button
         className={styles.voteButton}
         onClick={() =>

@@ -37,7 +37,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('author', 'score', 'question')
+    list_display = ('author', 'score', 'question', 'approved')
     inlines = [
         VoteInline, CommentInline
     ]
