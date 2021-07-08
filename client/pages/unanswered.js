@@ -86,20 +86,10 @@ const UnAnsweredPage = () => {
       {questions
         ?.sort(handleSorting())
         .map(
-          ({
-            id,
-            votes,
-            answers,
-            views,
-            title,
-            text,
-            tags,
-            author,
-            created
-          }) => (
-            <QuestionWrapper key={id}>
-              {(() => {
-                if (answers.length === 0) {
+          ({ id, votes, answers, views, title, text, tags, author, created }) =>
+            answers.length === 0 ? (
+              <QuestionWrapper key={id}>
+                {(() => {
                   return (
                     <>
                       <QuestionStats
@@ -118,12 +108,9 @@ const UnAnsweredPage = () => {
                       </QuestionSummary>
                     </>
                   )
-                } else {
-                  return <h1>Looks like Everyone's problem is solved..!</h1>
-                }
-              })()}
-            </QuestionWrapper>
-          )
+                })()}
+              </QuestionWrapper>
+            ) : null
         )}
     </Layout>
   )
