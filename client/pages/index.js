@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-
 import { publicFetch } from '../util/fetcher'
-
 import Layout from '../components/layout'
 import SearchInput from '../components/search-input'
 import QuestionWrapper from '../components/question/question-wrapper'
