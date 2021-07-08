@@ -9,7 +9,7 @@ from stackoverflow.models import Question, Tag, Answer, Vote, Comment
 from django.db.models import Count, F
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
-from stackoverflow.serializers import (SignupSerializer,
+from stackoverflow.serializers import (AnswerSerializer, SignupSerializer,
                                        AuthenticateSerializer,
                                        UserInfoSerializer,
                                        QuestionSerializer,
@@ -453,3 +453,25 @@ class Unvote(APIView):
         question = question[0]
         question_serializer = QuestionSerializer(question)
         return Response(question_serializer.data)
+
+
+class Approve(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Answer.objects.get(pk=pk)
+        except Answer.DoesNotExist:
+            raise status.HTTP_404_NOT_FOUND
+
+    def put(self, request, answer_id):
+        answer = self.get_object(answer_id)
+        print(request.data)
+        serializer = AnswerSerializer(answer, data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        print("bad request")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

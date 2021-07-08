@@ -53,6 +53,15 @@ const PostVote = ({
     setQuestion(data)
   }
 
+  const handleApprove = async () => {
+    const appr = { approved: 1 }
+    const { data } = await authAxios.put(
+      `/votes/approve/${answerId ? answerId : ''}`,
+      appr
+    )
+    setQuestion(data)
+  }
+
   return (
     <div className={styles.voteCell}>
       <Button
@@ -75,7 +84,9 @@ const PostVote = ({
         ) : approve === -1 ? (
           <VscError />
         ) : (
-          <BsFillClockFill />
+          <Button onClick={() => handleApprove(approve)}>
+            <BsFillClockFill />
+          </Button>
         )}
       </div>
       <Button
