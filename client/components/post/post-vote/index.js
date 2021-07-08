@@ -95,26 +95,26 @@ const PostVote = ({
         {approve === undefined ? null : isAuthenticated() ? (
           question_author.id === authState.userInfo.id ? (
             approve === 0 ? (
-              <button
+              <Button
                 className={styles.approveButtonnocomment}
                 onClick={() => handleApprove()}
               >
                 <BsFillPlusCircleFill />
-              </button>
+              </Button>
             ) : approve === 1 ? (
-              <button
+              <Button
                 className={styles.approveButtonapprove}
                 onClick={() => handleUnApprove()}
               >
                 <BsFillPersonCheckFill />
-              </button>
+              </Button>
             ) : (
-              <button
+              <Button
                 className={styles.approveButtondisapprove}
                 onClick={() => handleApprove()}
               >
                 <BsFillPersonDashFill />
-              </button>
+              </Button>
             )
           ) : approve === 0 ? (
             <span className={styles.Nocomment}>
