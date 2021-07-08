@@ -49,7 +49,7 @@ const AddAnswer = ({ id, tags, setQuestion }) => {
         handleChange,
         handleBlur,
         handleSubmit,
-        isSubmitting,
+        isSubmitting
       }) => (
         <form className={styles.container} onSubmit={handleSubmit}>
           <h2>Your answer</h2>
@@ -70,16 +70,16 @@ const AddAnswer = ({ id, tags, setQuestion }) => {
               primary
               isLoading={loading}
               disabled={isSubmitting}
-              onClick={() => !isAuthenticated() && handleComponentVisible(true, 'signup')}
+              onClick={() =>
+                !isAuthenticated() && handleComponentVisible(true, 'signup')
+              }
             >
               Post Your Answer
             </Button>
           </div>
           <h3>
             Browse other questions tagged &nbsp;
-            {tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
+            {tags ? tags.map((tag) => <Tag key={tag}>{tag}</Tag>) : null}
             or &nbsp;
             <Link href="/questions/ask" as="/questions/ask">
               <a>ask your own question.</a>

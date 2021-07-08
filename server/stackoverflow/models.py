@@ -91,11 +91,6 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, related_name='answers',
                                  on_delete=models.CASCADE)
 
-    def __str__(self):
-        ''' str method to return human readable string of an object '''
-
-        return "Text {}".format(self.text)
-
 
 class Vote(models.Model):
     '''Schema for votes'''

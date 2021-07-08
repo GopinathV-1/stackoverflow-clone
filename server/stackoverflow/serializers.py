@@ -61,9 +61,9 @@ class SignupSerializer(serializers.Serializer):
         '''method for crete objects in database invoked when save called'''
 
         user = User.objects.create_user(
-                username=validated_data['username'],
-                password=validated_data['password']
-            )
+            username=validated_data['username'],
+            password=validated_data['password']
+        )
 
         # required format of data via frontend
         data = {
@@ -76,8 +76,8 @@ class SignupSerializer(serializers.Serializer):
                 'id': user.id,
                 'created': user.date_joined,
                 'profilePhoto': user.profile.photo
-                }
             }
+        }
         token_serializer = TokenSerializer(data=data)
         return token_serializer
 
@@ -115,8 +115,8 @@ class AuthenticateSerializer(serializers.Serializer):
                 'id': user.id,
                 'created': user.date_joined,
                 'profilePhoto': user.profile.photo
-                }
             }
+        }
         token_serializer = TokenSerializer(data=data)
         return token_serializer
 

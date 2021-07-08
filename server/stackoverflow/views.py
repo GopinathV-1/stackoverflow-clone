@@ -229,6 +229,7 @@ class TagSearchView(APIView):
     '''
     For searching the tags
     '''
+
     def get(self, request, tag):
         query = Tag.objects.values('name')\
             .filter(name__icontains=tag)\
@@ -466,12 +467,9 @@ class Approve(APIView):
             raise status.HTTP_404_NOT_FOUND
 
     def put(self, request, answer_id):
-        answer = self.get_object(answer_id)
-        print(request.data)
-        serializer = AnswerSerializer(answer, data=request.data)
-        print(serializer)
+        answer = Answer.objects.filter(id=answer_id).first()
+        serializer = AnswerSerializer(answer, data={"approved": request.data["approved"]}, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        print("bad request")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -94,56 +94,62 @@ const QuestionDetail = ({ questionId, title }) => {
               </CommentList>
             </PostWrapper>
 
-            {question.answers.length > 0 && (
-              <AnswerContainer
-                answersCount={question.answers.length}
-                answerSortType={answerSortType}
-                setAnswerSortType={setAnswersSortType}
-              >
-                {question.answers.sort(handleSorting()).map((answer) => (
-                  <PostWrapper key={answer.id}>
-                    <PostVote
-                      score={answer.score}
-                      votes={answer.votes}
-                      question_author={question.author}
-                      approve={answer.approved}
-                      answerId={answer.id}
-                      questionId={questionId}
-                      setQuestion={setQuestion}
-                    />
-                    <PostSummary
-                      author={answer.author}
-                      created={answer.created}
-                      questionId={questionId}
-                      answerId={answer.id}
-                      setQuestion={setQuestion}
-                    >
-                      {answer.text}
-                    </PostSummary>
-                    <CommentList
-                      questionId={questionId}
-                      answerId={answer.id}
-                      setQuestion={setQuestion}
-                    >
-                      {answer.comments.map(({ id, author, created, body }) => (
-                        <CommentItem
-                          key={id}
-                          commentId={id}
+            {question.answers
+              ? question.answers.length > 0 && (
+                  <AnswerContainer
+                    answersCount={question.answers.length}
+                    answerSortType={answerSortType}
+                    setAnswerSortType={setAnswersSortType}
+                  >
+                    {question.answers.sort(handleSorting()).map((answer) => (
+                      <PostWrapper key={answer.id}>
+                        <PostVote
+                          score={answer.score}
+                          votes={answer.votes}
+                          question_author={question.author}
+                          approve={answer.approved}
+                          answerId={answer.id}
+                          questionId={questionId}
+                          setQuestion={setQuestion}
+                        />
+                        <PostSummary
+                          author={answer.author}
+                          created={answer.created}
                           questionId={questionId}
                           answerId={answer.id}
-                          author={author.username}
-                          isOwner={author.username === question.author.username}
-                          created={created}
                           setQuestion={setQuestion}
                         >
-                          {body}
-                        </CommentItem>
-                      ))}
-                    </CommentList>
-                  </PostWrapper>
-                ))}
-              </AnswerContainer>
-            )}
+                          {answer.text}
+                        </PostSummary>
+                        <CommentList
+                          questionId={questionId}
+                          answerId={answer.id}
+                          setQuestion={setQuestion}
+                        >
+                          {answer.comments.map(
+                            ({ id, author, created, body }) => (
+                              <CommentItem
+                                key={id}
+                                commentId={id}
+                                questionId={questionId}
+                                answerId={answer.id}
+                                author={author.username}
+                                isOwner={
+                                  author.username === question.author.username
+                                }
+                                created={created}
+                                setQuestion={setQuestion}
+                              >
+                                {body}
+                              </CommentItem>
+                            )
+                          )}
+                        </CommentList>
+                      </PostWrapper>
+                    ))}
+                  </AnswerContainer>
+                )
+              : null}
 
             <AddAnswer
               tags={question.tags}

@@ -67,6 +67,14 @@ const PostVote = ({
     )
     setQuestion(data)
   }
+  const handleUnApprove = async () => {
+    const appr = { approved: -1 }
+    const { data } = await authAxios.put(
+      `/votes/approve/${answerId ? answerId : ''}`,
+      appr
+    )
+    setQuestion(data)
+  }
 
   return (
     <div className={styles.voteCell}>
@@ -87,15 +95,24 @@ const PostVote = ({
         {approve === undefined ? null : isAuthenticated() ? (
           question_author.id === authState.userInfo.id ? (
             approve === 0 ? (
-              <button className={styles.approveButtonnocomment}>
+              <button
+                className={styles.approveButtonnocomment}
+                onClick={() => handleApprove()}
+              >
                 <BsFillPlusCircleFill />
               </button>
             ) : approve === 1 ? (
-              <button className={styles.approveButtonapprove}>
+              <button
+                className={styles.approveButtonapprove}
+                onClick={() => handleUnApprove()}
+              >
                 <BsFillPersonCheckFill />
               </button>
             ) : (
-              <button className={styles.approveButtondisapprove}>
+              <button
+                className={styles.approveButtondisapprove}
+                onClick={() => handleApprove()}
+              >
                 <BsFillPersonDashFill />
               </button>
             )
