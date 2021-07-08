@@ -64,7 +64,7 @@ const UnAnsweredPage = () => {
         title={
           router.query.tag
             ? `Questions tagged [${router.query.tag}]`
-            : 'All Questions'
+            : 'Unanswered Questions'
         }
         button
         borderBottom={false}
