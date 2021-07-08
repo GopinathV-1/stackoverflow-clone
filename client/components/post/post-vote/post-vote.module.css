@@ -12,7 +12,6 @@
   &:hover {
     background-color: transparent;
   }
-  
   svg {
     color: var(--black-200);
     width: 36px;
@@ -20,8 +19,35 @@
   }
 }
 
+.approveButtonapprove {
+  background: transparent;
+  color: green;
+}
+
+.approveButtonnocomment {
+  background: transparent;
+  color: rgb(48, 223, 247);
+}
+
+.approveButtondisapprove {
+  background: transparent;
+  color: red;
+}
+
 .voted {
   color: var(--orange) !important;
+}
+
+.Check {
+  color: green;
+}
+
+.Wrong {
+  color: red;
+}
+
+.Nocomment {
+  color: rgb(48, 223, 247);
 }
 
 .score {
