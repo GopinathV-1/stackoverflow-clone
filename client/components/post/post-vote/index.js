@@ -8,7 +8,12 @@ import Button from '../../button'
 import { ArrowUp, ArrowDown } from '../../icons'
 
 import { VscCheck, VscError } from 'react-icons/vsc'
-import { BsFillClockFill } from 'react-icons/bs'
+import {
+  BsFillClockFill,
+  BsFillPersonDashFill,
+  BsFillPersonCheckFill,
+  BsFillPlusCircleFill
+} from 'react-icons/bs'
 
 import styles from './post-vote.module.css'
 
@@ -16,6 +21,7 @@ const PostVote = ({
   score,
   votes,
   approve,
+  question_author,
   questionId,
   answerId,
   setQuestion
@@ -78,15 +84,46 @@ const PostVote = ({
       </Button>
       <div className={styles.score}>{score}</div>
       <div className={styles.score}>
-        {console.log(approve)}
-        {approve === undefined ? null : approve === 1 ? (
-          <VscCheck />
-        ) : approve === -1 ? (
-          <VscError />
-        ) : (
-          <Button onClick={() => handleApprove(approve)}>
+        {approve === undefined ? null : isAuthenticated() ? (
+          question_author.id === authState.userInfo.id ? (
+            approve === 0 ? (
+              <button className={styles.approveButtonnocomment}>
+                <BsFillPlusCircleFill />
+              </button>
+            ) : approve === 1 ? (
+              <button className={styles.approveButtonapprove}>
+                <BsFillPersonCheckFill />
+              </button>
+            ) : (
+              <button className={styles.approveButtondisapprove}>
+                <BsFillPersonDashFill />
+              </button>
+            )
+          ) : approve === 0 ? (
+            <span className={styles.Nocomment}>
+              <BsFillClockFill />
+            </span>
+          ) : approve === 1 ? (
+            <span className={styles.Check}>
+              <VscCheck />
+            </span>
+          ) : (
+            <span className={styles.Wrong}>
+              <VscError />
+            </span>
+          )
+        ) : approve === 0 ? (
+          <span className={styles.Nocomment}>
             <BsFillClockFill />
-          </Button>
+          </span>
+        ) : approve === 1 ? (
+          <span className={styles.Check}>
+            <VscCheck />
+          </span>
+        ) : (
+          <span className={styles.Wrong}>
+            <VscError />
+          </span>
         )}
       </div>
       <Button
