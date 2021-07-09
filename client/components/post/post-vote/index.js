@@ -91,6 +91,19 @@ const PostVote = ({
         <ArrowUp className={isUpVoted() ? styles.voted : ''} />
       </Button>
       <div className={styles.score}>{score}</div>
+
+      <Button
+        className={styles.voteButton}
+        onClick={() =>
+          isAuthenticated()
+            ? isDownVoted()
+              ? unVote()
+              : downVote()
+            : handleComponentVisible(true, 'signup')
+        }
+      >
+        <ArrowDown className={isDownVoted() ? styles.voted : ''} />
+      </Button>
       <div className={styles.score}>
         {approve === undefined ? null : isAuthenticated() ? (
           question_author.id === authState.userInfo.id ? (
@@ -143,18 +156,6 @@ const PostVote = ({
           </span>
         )}
       </div>
-      <Button
-        className={styles.voteButton}
-        onClick={() =>
-          isAuthenticated()
-            ? isDownVoted()
-              ? unVote()
-              : downVote()
-            : handleComponentVisible(true, 'signup')
-        }
-      >
-        <ArrowDown className={isDownVoted() ? styles.voted : ''} />
-      </Button>
     </div>
   )
 }
