@@ -115,6 +115,20 @@ class QuestionView(generics.ListCreateAPIView):
     serializer_class = QuestionSerializer
 
 
+class QuestionSearch(APIView):
+    '''Api view for user searching'''
+
+    def get(self, request, title):
+        '''method to handle get requests'''
+
+        # querying users and attach profile to convert required format
+        questions = Question.objects.filter(title__icontains=title)
+
+        # serializing data
+        serializer = QuestionSerializer(questions, many=True)
+        return Response(serializer.data)
+
+
 class QuestionDetailView(APIView):
     '''
     Gives the detail of particular

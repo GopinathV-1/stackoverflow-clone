@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/question/<int:q_id>', views.QuestionDetailView.as_view()),
     path('api/questions/<str:tag>', views.QuestionTag.as_view()),
     path('api/question/user/<str:name>', views.UserQuestion.as_view()),
+    path('api/question/<str:title>', views.QuestionSearch.as_view()),
     path('api/questions', views.QuestionPost.as_view()),
 
     # tags

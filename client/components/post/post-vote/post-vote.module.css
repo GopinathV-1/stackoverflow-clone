@@ -20,16 +20,19 @@
 }
 
 .approveButtonapprove {
+  font-size: 20px;
   background: transparent;
   color: green;
 }
 
 .approveButtonnocomment {
+  font-size: 20px;
   background: transparent;
   color: rgb(48, 223, 247);
 }
 
 .approveButtondisapprove {
+  font-size: 20px;
   background: transparent;
   color: red;
 }
