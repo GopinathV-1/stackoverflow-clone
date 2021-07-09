@@ -34,6 +34,10 @@ const Navigation = () => {
       <NavItem href="/unanswered" selected={router.pathname == '/unanswered'}>
         <span>Unanswered</span>
       </NavItem>
+      <br />
+      <NavItem href="/teams" selected={router.pathname == '/teams'}>
+        <span>Team</span>
+      </NavItem>
     </nav>
   )
 }
