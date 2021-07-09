@@ -466,10 +466,16 @@ class Approve(APIView):
         except Answer.DoesNotExist:
             raise status.HTTP_404_NOT_FOUND
 
-    def put(self, request, answer_id):
+    def put(self, request, question_id, answer_id):
+        question = Question.objects.filter(id=question_id).first()
         answer = Answer.objects.filter(id=answer_id).first()
-        serializer = AnswerSerializer(answer, data={"approved": request.data["approved"]}, partial=True)
+        serializer = AnswerSerializer(
+            answer,
+            data={"approved": request.data["approved"]},
+            partial=True
+        )
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            ques_serializer = QuestionSerializer(question)
+            return Response(ques_serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

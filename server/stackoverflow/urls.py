@@ -71,5 +71,8 @@ urlpatterns = [
         'api/votes/unvote/<int:question_id>/<int:answer_id>',
         views.Unvote.as_view()
     ),
-    path('api/votes/approve/<int:answer_id>', views.Approve.as_view()),
+    path(
+        'api/votes/approve/<int:question_id>/<int:answer_id>',
+        views.Approve.as_view()
+    ),
 ]

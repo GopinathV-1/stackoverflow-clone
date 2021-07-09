@@ -62,7 +62,7 @@ const PostVote = ({
   const handleApprove = async () => {
     const appr = { approved: 1 }
     const { data } = await authAxios.put(
-      `/votes/approve/${answerId ? answerId : ''}`,
+      `/votes/approve/${questionId}/${answerId ? answerId : ''}`,
       appr
     )
     setQuestion(data)
@@ -70,7 +70,7 @@ const PostVote = ({
   const handleUnApprove = async () => {
     const appr = { approved: -1 }
     const { data } = await authAxios.put(
-      `/votes/approve/${answerId ? answerId : ''}`,
+      `/votes/approve/${questionId}/${answerId ? answerId : ''}`,
       appr
     )
     setQuestion(data)
