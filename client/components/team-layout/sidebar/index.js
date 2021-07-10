@@ -20,12 +20,19 @@ const Sidebar = ({ className, ...props }) => {
         }
       >
         <div>
-          <img src={'https://secure.gravatar.com/avatar/?s=120&d=identicon'} />
+          <img
+            className={styles.avatar}
+            src={
+              'https://secure.gravatar.com/avatar/' +
+              Math.floor(Math.random() * 100) +
+              '?s=120&d=identicon'
+            }
+          />
           <span>
-            <h2>Your Team</h2>
+            <h2 className={styles.teamname}>Your Team</h2>
           </span>
           <span>
-            <IoLockClosed />
+            <IoLockClosed></IoLockClosed>
             Private Team
           </span>
         </div>

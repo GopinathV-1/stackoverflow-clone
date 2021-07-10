@@ -1,3 +1,13 @@
 .sidebar {
     position: relative;
 }
+
+.teamname {
+    text-align: center;
+}
+
+.avatar {
+    text-align: center;
+    object-fit: contain;
+    margin: 10%;
+}
