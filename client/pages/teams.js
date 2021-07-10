@@ -23,7 +23,7 @@ const Teams = () => {
           Stackoverflow
         </title>
       </Head>
-      <PageTitle title={'Teams'} button borderBottom={false} />
+      <PageTitle title={'Create Teams'} button borderBottom={false} />
     </Layout>
   )
 }

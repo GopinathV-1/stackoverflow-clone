@@ -24,6 +24,7 @@ class CommentInline(admin.TabularInline):
 
 
 # Register your models here.
+
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('author', 'title', 'score', 'views')

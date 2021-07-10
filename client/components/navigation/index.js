@@ -36,7 +36,7 @@ const Navigation = () => {
       </NavItem>
       <br />
       <NavItem href="/teams" selected={router.pathname == '/teams'}>
-        <span>Team</span>
+        <span>Create Teams +</span>
       </NavItem>
     </nav>
   )
