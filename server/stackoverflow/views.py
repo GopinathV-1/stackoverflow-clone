@@ -5,7 +5,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth.models import User
 from stackoverflow.helper import (attach_profile, calculate_score,
                                   delete_vote_object, went_wrong)
-from stackoverflow.models import Question, Tag, Answer, Vote, Comment
+from stackoverflow.models import Question, Tag, Answer, Vote, Comment, Team
 from django.db.models import Count, F
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
@@ -494,6 +494,24 @@ class Approve(APIView):
             ques_serializer = QuestionSerializer(question)
             return Response(ques_serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ListTeamUser(APIView):
+    '''Api view for list all users of team'''
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, team_id):
+        '''method for handeling get request'''
+
+        team = Team.objects.filter(id=team_id)
+        members = team.members.all()
+        # querying users and pass to attach profile
+        users = attach_profile(members)
+        # serializing data
+        user_info_serializer =\
+            UserInfoSerializer(users, many=True)
+        return Response(user_info_serializer.data)
 
 
 class CreateTeams(APIView):
