@@ -78,10 +78,9 @@ class TokenProxyInline(admin.TabularInline):
     model = TokenProxy
 
 
-# register team model
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'count_member', 'created_by')
+    list_display = ('name', 'count_members')
 
 
 # Initializing inline for user admin
