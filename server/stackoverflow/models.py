@@ -45,6 +45,7 @@ class Team(models.Model):
         related_name='created_teams',
         on_delete=models.CASCADE
     )
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
