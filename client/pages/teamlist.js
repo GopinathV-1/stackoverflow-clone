@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Head from 'next/head'
 
 import { publicFetch } from '../util/fetcher'
@@ -11,15 +11,21 @@ import UserItem from '../components/user-list/user-item'
 import { Spinner } from '../components/icons'
 import TeamLayout from '../components/team-layout'
 
+import { AuthContext } from '../store/auth'
+import axios from 'axios'
+
 function TeamPage() {
   const [searchTerm, setSearchTerm] = useState(null)
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(false)
-
+  const { authState } = useContext(AuthContext)
+  console.log(authState.token)
   useEffect(() => {
     if (searchTerm === null) {
       const fetchUser = async () => {
-        const { data } = await publicFetch.get('/team/1/')
+        const { data } = await axios.get('http://localhost:8000/api/teams/2', {
+          headers: { Authorization: `Token ${authState.token}` }
+        })
         setUsers(data)
       }
 
