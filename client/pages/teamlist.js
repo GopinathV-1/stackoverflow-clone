@@ -23,26 +23,15 @@ function TeamPage() {
   useEffect(() => {
     if (searchTerm === null) {
       const fetchUser = async () => {
-        const { data } = await axios.get('http://localhost:8000/api/teams/2', {
+        const { data } = await axios.get('http://localhost:8000/api/teams/1', {
           headers: { Authorization: `Token ${authState.token}` }
         })
         setUsers(data)
       }
 
       fetchUser()
-    } else {
-      const delayDebounceFn = setTimeout(async () => {
-        setLoading(true)
-        const { data } = await publicFetch.get(
-          searchTerm ? `/users/${searchTerm}` : `/users`
-        )
-        setUsers(data)
-        setLoading(false)
-      }, 500)
-
-      return () => clearTimeout(delayDebounceFn)
     }
-  }, [searchTerm])
+  }, [])
 
   return (
     <TeamLayout extra={false}>
@@ -51,15 +40,6 @@ function TeamPage() {
       </Head>
 
       <PageTitle title="Team Member" borderBottom={false} />
-
-      <SearchInput
-        placeholder="Search by user"
-        isLoading={loading}
-        autoFocus
-        autoComplete="off"
-        type="text"
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
 
       {!users && (
         <div className="loading">
