@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { publicFetch } from '../util/fetcher'
 
-import Layout from '../components/layout'
+import TeamLayout from '../components/team-layout'
 import QuestionWrapper from '../components/question/question-wrapper'
 import QuestionStats from '../components/question/question-stats'
 import QuestionSummary from '../components/question/question-summary'
@@ -16,7 +16,7 @@ const Teams = () => {
   const router = useRouter()
 
   return (
-    <Layout>
+    <TeamLayout>
       <Head>
         <title>
           {router.query.tag ? router.query.tag : 'Questions'} - Clone of
@@ -24,7 +24,7 @@ const Teams = () => {
         </title>
       </Head>
       <PageTitle title={'Create Teams'} button borderBottom={false} />
-    </Layout>
+    </TeamLayout>
   )
 }
 
