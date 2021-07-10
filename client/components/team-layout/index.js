@@ -5,7 +5,7 @@ import CONST from '../../constants'
 import useWindowSize from '../../hooks/useWindowSize'
 
 import Sidebar from './sidebar'
-import Main from './main'
+import TeamMain from './main'
 import Extra from './extra'
 import Header from './header'
 
@@ -19,7 +19,7 @@ const TeamLayout = ({ extra = true, children }) => {
       <div className={styles.container}>
         <div className={cn(styles.body, !extra && styles.main)}>
           {size.width > CONST.MOBILE_SIZE && <Sidebar />}
-          <Main>{children}</Main>
+          <TeamMain>{children}</TeamMain>
           {size.width > CONST.TABLET_SIZE && extra && <Extra />}
         </div>
       </div>
