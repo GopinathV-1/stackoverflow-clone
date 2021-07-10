@@ -504,7 +504,7 @@ class ListTeamUser(APIView):
     def get(self, request, team_id):
         '''method for handeling get request'''
 
-        team = Team.objects.filter(id=team_id)
+        team = Team.objects.filter(id=team_id).first()
         members = team.members.all()
         # querying users and pass to attach profile
         users = attach_profile(members)
