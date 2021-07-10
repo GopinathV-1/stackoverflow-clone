@@ -4,7 +4,7 @@ import cn from 'classnames'
 import { useRouter } from 'next/router'
 
 import NavItem from './nav-item'
-import { World } from '../icons'
+import { World } from '../../icons'
 
 import styles from './sidebar.module.css'
 

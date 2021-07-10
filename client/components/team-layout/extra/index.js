@@ -5,7 +5,7 @@ import { TagContext } from '../../../store/tag'
 import Tag from '../../tag'
 import { Spinner } from '../../icons'
 
-import styles from './extra.module.css'
+import styles from './extra.modules.css'
 
 const Extra = ({ marginTop = 24 }) => {
   const { tagState } = useContext(TagContext)
