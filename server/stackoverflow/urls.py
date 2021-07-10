@@ -78,5 +78,5 @@ urlpatterns = [
     ),
 
     # Teams
-    path('api/votes/createteam/', views.CreateTeams.as_views())
+    path('api/votes/createteam/', views.CreateTeams.as_view())
 ]

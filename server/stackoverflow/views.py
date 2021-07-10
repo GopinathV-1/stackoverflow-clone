@@ -1,4 +1,3 @@
-from server.stackoverflow.serializers import TeamCreateSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
@@ -17,7 +16,8 @@ from stackoverflow.serializers import (AnswerSerializer, SignupSerializer,
                                        QuestionPostSerializer,
                                        TagSerializer,
                                        AnswerPostSerializer,
-                                       CommentPostSerializer)
+                                       CommentPostSerializer,
+                                       TeamCreateSerializer)
 
 
 class Signup(APIView):
