@@ -6,8 +6,6 @@ from rest_framework.authtoken.models import TokenProxy
 
 # Register your models here.
 
-class Team(admin.TabularInline):
-    model = Team
 
 class TagInline(admin.TabularInline):
     model = Tag.question.through
@@ -26,6 +24,7 @@ class CommentInline(admin.TabularInline):
 
 
 # Register your models here.
+
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('author', 'title', 'score', 'views')
@@ -77,6 +76,12 @@ class TokenProxyInline(admin.TabularInline):
     '''Inline Token model for users'''
 
     model = TokenProxy
+
+
+# register team model
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    list_display = ('name', 'count_member', 'created_by')
 
 
 # Initializing inline for user admin
