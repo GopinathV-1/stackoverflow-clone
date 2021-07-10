@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from stackoverflow.models import Question, Answer, Comment, Vote, Tag
+from stackoverflow.models import Question, Answer, Comment, Vote, Tag, Team
 from stackoverflow.helper import attach_profile, calculate_expiry
 
 
@@ -231,3 +231,20 @@ class QuestionPostSerializer(serializers.ModelSerializer):
             t.save()
             t.question.add(question.id)
         return question
+
+
+class TeamCreateSerializer(serializers.ModelSerializer):
+    '''
+    Create Teams
+    '''
+
+    class Meta:
+        model = Team
+        field = '__all__'
+
+    def create(self, validated_data):
+        member_of_team = validated_data.pop('members')
+        teams = Team.objects.create(**validated_data)
+        for member in member_of_team:
+            t = teams.objects.create(members=member)
+            t.save()

@@ -76,4 +76,7 @@ urlpatterns = [
         'api/votes/approve/<int:question_id>/<int:answer_id>',
         views.Approve.as_view()
     ),
+
+    # Teams
+    path('api/votes/createteam/', views.CreateTeams.as_views())
 ]

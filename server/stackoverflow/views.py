@@ -1,3 +1,4 @@
+from server.stackoverflow.serializers import TeamCreateSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
@@ -113,7 +114,6 @@ class QuestionView(generics.ListCreateAPIView):
     # show all the questions asked by users
 
     serializer_class = QuestionSerializer
-
 
 
 class QuestionSearch(APIView):
@@ -494,3 +494,18 @@ class Approve(APIView):
             ques_serializer = QuestionSerializer(question)
             return Response(ques_serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateTeams(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        request.data['created_by'] = request.user.id
+        # passing the data to serializer for overriding create
+
+        serializer = TeamCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=201)
+        return Response(serializer.errors)
