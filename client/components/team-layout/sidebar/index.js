@@ -4,9 +4,9 @@ import cn from 'classnames'
 import { useRouter } from 'next/router'
 
 import NavItem from '../../navigation/nav-item'
-import { World } from '../../icons'
 
 import styles from './sidebar.module.css'
+import { IoLockClosed } from 'react-icons/io5'
 
 const Sidebar = ({ className, ...props }) => {
   const router = useRouter()
@@ -19,8 +19,16 @@ const Sidebar = ({ className, ...props }) => {
           router.pathname == '/' || router.pathname.split('/')[1] == 'questions'
         }
       >
-        <World />
-        <span>Stack Overflow</span>
+        <div>
+          <img src={'https://secure.gravatar.com/avatar/?s=120&d=identicon'} />
+          <span>
+            <h2>Your Team</h2>
+          </span>
+          <span>
+            <IoLockClosed />
+            Private Team
+          </span>
+        </div>
       </NavItem>
 
       <NavItem href="/tags" selected={router.pathname == '/tags'}>
@@ -31,14 +39,14 @@ const Sidebar = ({ className, ...props }) => {
         href="/users"
         selected={router.pathname.split('/')[1] == 'users'}
       >
-        <span>Users</span>
+        <span>For You</span>
       </NavItem>
       <NavItem href="/unanswered" selected={router.pathname == '/unanswered'}>
-        <span>Unanswered</span>
+        <span>Team Members</span>
       </NavItem>
       <br />
       <NavItem href="/teams" selected={router.pathname == '/teams'}>
-        <span>Create</span>
+        <span>My Team</span>
       </NavItem>
     </nav>
   )
