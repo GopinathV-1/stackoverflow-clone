@@ -32,21 +32,21 @@ const Sidebar = ({ className, ...props }) => {
             <h2 className={styles.teamname}>Your Team</h2>
           </span>
           <span>
-            <IoLockClosed></IoLockClosed>
+            <IoLockClosed />
             Private Team
           </span>
         </div>
       </NavItem>
 
       <NavItem href="/tags" selected={router.pathname == '/tags'}>
-        <span>Tags</span>
+        <span>Questions</span>
       </NavItem>
 
       <NavItem
         href="/users"
         selected={router.pathname.split('/')[1] == 'users'}
       >
-        <span>For You</span>
+        <span>Tag</span>
       </NavItem>
       <NavItem href="/unanswered" selected={router.pathname == '/unanswered'}>
         <span>Team Members</span>
