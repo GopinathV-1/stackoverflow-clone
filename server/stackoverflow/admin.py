@@ -1,11 +1,13 @@
 from django.contrib import admin
 from stackoverflow.models import (Profile, Question, Answer,
-                                  Tag, Vote, Comment)
+                                  Tag, Vote, Comment, Team)
 from django.contrib.auth.admin import UserAdmin, Group
 from rest_framework.authtoken.models import TokenProxy
 
 # Register your models here.
 
+class Team(admin.TabularInline):
+    model = Team
 
 class TagInline(admin.TabularInline):
     model = Tag.question.through

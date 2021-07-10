@@ -36,6 +36,16 @@ class Profile(models.Model):
         return f'{self.user}'
 
 
+class Team(models.Model):
+
+    name = models.CharField(max_length=150, blank=False, unique=True)
+    members = models.ManyToManyField(User, related_name='teams')
+    created_by = models.ForeignKey(User, related_name='created_teams', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
 class Question(models.Model):
 
     '''
@@ -44,7 +54,7 @@ class Question(models.Model):
 
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                blank=False)
-    title = models.CharField(max_length=150, blank=False, unique=True)
+    title = models.CharField(max_length=150, blank=False)
     text = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
