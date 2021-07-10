@@ -1,7 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
 
-import React from 'react'
 import { useRouter } from 'next/router'
 
 import NavItem from './nav-item'
