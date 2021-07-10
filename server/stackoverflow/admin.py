@@ -80,7 +80,7 @@ class TokenProxyInline(admin.TabularInline):
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'count_members')
+    list_display = ('id', 'name', 'count_members')
     list_filter = ('name', 'created')
     search_fields = ('name',)
 
