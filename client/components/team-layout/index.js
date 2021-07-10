@@ -9,7 +9,7 @@ import Main from './main'
 import Extra from './extra'
 import Header from './header'
 
-import styles from './layout.module.css'
+import styles from './team-layout.module.css'
 
 const TeamLayout = ({ extra = true, children }) => {
   const size = useWindowSize()
