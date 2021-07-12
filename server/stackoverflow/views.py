@@ -560,3 +560,14 @@ class CreateTeamQuestion(APIView):
             serializer.save()
             return Response(status=201)
         return Response(serializer.errors)
+
+
+class TeamList(APIView):
+    '''
+    List all the teams of a user
+    '''
+
+    def get(self, request, u_id):
+
+        teams = Team.objects.filter(members=u_id)
+        return Response(teams)
