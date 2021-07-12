@@ -23,13 +23,9 @@ const CreateForm = () => {
       onSubmit={async (values, { setStatus, resetForm }) => {
         setLoading(true)
         try {
-          const { data } = await publicFetch.post(
-            'teams/createteam/',
-            { name: teamname },
-            {
-              headers: { Authorization: `Token ${authState.token}` }
-            }
-          )
+          const { data } = await publicFetch.post('teams/createteam/', values, {
+            headers: { Authorization: `Token ${authState.token}` }
+          })
           resetForm({})
           setIsComponentVisible(true)
         } catch (error) {

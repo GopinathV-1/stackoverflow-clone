@@ -515,13 +515,14 @@ class ListTeamUser(APIView):
 
 class CreateTeams(APIView):
 
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        print("user", request.user)
-        print(request.user.id)
+        request.data['created_by'] = request.user.id
+        request.data['name'] = request.data['teamname']
+        request.data['members'] = [request.user.id]
+
         # passing the data to serializer for overriding create
-        print(request.data)
         serializer = TeamCreateSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
