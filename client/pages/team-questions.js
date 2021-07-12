@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { publicFetch } from '../util/fetcher'
-import TeamLayout from '../components/team-layout'
-import SearchInput from '../components/search-input'
-import QuestionWrapper from '../components/question/question-wrapper'
-import QuestionStats from '../components/question/question-stats'
-import QuestionSummary from '../components/question/question-summary'
-import TeamPageTitle from '../components/teampage-title'
+import React, { useEffect, useState } from 'react'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
+import QuestionStats from '../components/question/question-stats'
+import QuestionSummary from '../components/question/question-summary'
+import QuestionWrapper from '../components/question/question-wrapper'
+import TeamLayout from '../components/team-layout'
+import TeamPageTitle from '../components/teampage-title'
+import { publicFetch } from '../util/fetcher'
 
 const HomePage = () => {
   const router = useRouter()
@@ -30,7 +29,7 @@ const HomePage = () => {
     } else {
       if (searchTerm === null || searchTerm === '') {
         const fetchQuestion = async () => {
-          const { data } = await publicFetch.get('teams/questions/2')
+          const { data } = await publicFetch.get('teams/questions/1')
           console.log(data)
           setQuestions(data)
         }

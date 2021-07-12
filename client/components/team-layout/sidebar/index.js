@@ -1,12 +1,12 @@
-import React from 'react'
 import cn from 'classnames'
-
 import { useRouter } from 'next/router'
-
-import NavItem from '../../navigation/nav-item'
-
-import styles from './sidebar.module.css'
+import React from 'react'
 import { IoLockClosed } from 'react-icons/io5'
+import NavItem from '../../navigation/nav-item'
+import styles from './sidebar.module.css'
+
+
+
 
 const Sidebar = ({ className, ...props }) => {
   const router = useRouter()
@@ -23,9 +23,7 @@ const Sidebar = ({ className, ...props }) => {
           <img
             className={styles.avatar}
             src={
-              'https://secure.gravatar.com/avatar/' +
-              Math.floor(Math.random() * 100) +
-              '?s=120&d=identicon'
+              'https://secure.gravatar.com/avatar/1?s=120&d=identicon'
             }
           />
           <span>
