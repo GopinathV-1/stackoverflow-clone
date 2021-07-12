@@ -16,7 +16,7 @@ from stackoverflow.serializers import (AnswerPostSerializer, AnswerSerializer,
                                        QuestionPostSerializer,
                                        QuestionSerializer, SignupSerializer,
                                        TagSerializer, TeamCreateSerializer,
-                                       UserInfoSerializer)
+                                       TeamSerializer, UserInfoSerializer)
 
 
 class Signup(APIView):
@@ -570,4 +570,5 @@ class TeamList(APIView):
     def get(self, request, u_id):
 
         teams = Team.objects.filter(members=u_id)
-        return Response(teams)
+        team_list = TeamSerializer(teams, many=True)
+        return Response(team_list.data)

@@ -273,3 +273,9 @@ class TeamCreateSerializer(serializers.ModelSerializer):
         for member in member_of_team:
             teams.members.add(member)
         return teams
+
+
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = '__all__'

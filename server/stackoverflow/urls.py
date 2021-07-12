@@ -90,7 +90,7 @@ urlpatterns = [
         views.CreateTeamQuestion.as_view()
     ),
     path(
-        'api/teams/<int:u_id>',
+        'api/teamlist/<int:u_id>',
         views.TeamList.as_view()
     )
 ]
