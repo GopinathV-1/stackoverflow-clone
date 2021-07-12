@@ -19,7 +19,6 @@ function TeamPage() {
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(false)
   const { authState } = useContext(AuthContext)
-  console.log(authState.token)
   useEffect(() => {
     if (searchTerm === null) {
       const fetchUser = async () => {

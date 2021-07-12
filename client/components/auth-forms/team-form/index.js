@@ -13,18 +13,23 @@ import Button from '../../button'
 import styles from './team-form.module.css'
 
 const CreateForm = () => {
-  const { setAuthState } = useContext(AuthContext)
   const { setIsComponentVisible } = useContext(ModalContext)
-
+  const { authState } = useContext(AuthContext)
   const [loading, setLoading] = useState(false)
-
+  console.log(authState.token)
   return (
     <Formik
       initialValues={{ teamname: '' }}
       onSubmit={async (values, { setStatus, resetForm }) => {
         setLoading(true)
         try {
-          const { data } = await publicFetch.post('teams/createteam/', values)
+          const { data } = await publicFetch.post(
+            'teams/createteam/',
+            { name: teamname },
+            {
+              headers: { Authorization: `Token ${authState.token}` }
+            }
+          )
           resetForm({})
           setIsComponentVisible(true)
         } catch (error) {
