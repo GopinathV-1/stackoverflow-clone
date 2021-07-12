@@ -527,3 +527,17 @@ class CreateTeams(APIView):
             serializer.save()
             return Response(status=201)
         return Response(serializer.errors)
+
+
+class ListTeamQuestions(APIView):
+    '''Api view for user searching'''
+
+    def get(self, request, t_id):
+        '''method to handle get requests'''
+
+        # querying users and attach profile to convert required format
+        questions = Question.objects.filter(team=t_id)
+
+        # serializing data
+        serializer = QuestionSerializer(questions, many=True)
+        return Response(serializer.data)
