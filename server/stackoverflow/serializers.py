@@ -233,6 +233,29 @@ class QuestionPostSerializer(serializers.ModelSerializer):
         return question
 
 
+class PrivateQuestionPostSerializer(serializers.ModelSerializer):
+    '''
+    Post the question in same format
+    add the tags with question id
+    by overriding create method
+    '''
+
+    tags = serializers.ListField(child=serializers.CharField(max_length=15))
+
+    class Meta:
+        model = Question
+        fields = ['title', 'author', 'text', 'tags', 'team']
+
+    def create(self, validated_data):
+        tag_data = validated_data.pop('tags')
+        question = Question.objects.create(**validated_data)
+        for tag in tag_data:
+            t = Tag.objects.create(name=tag)
+            t.save()
+            t.question.add(question.id)
+        return question
+
+
 class TeamCreateSerializer(serializers.ModelSerializer):
     '''
     Create Teams
