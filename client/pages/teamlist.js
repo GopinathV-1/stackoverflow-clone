@@ -15,16 +15,13 @@ import { AuthContext } from '../store/auth'
 import axios from 'axios'
 
 function TeamPage() {
-  const [searchTerm, setSearchTerm] = useState(null)
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(false)
   const { authState } = useContext(AuthContext)
   useEffect(() => {
-    if (searchTerm === null) {
+    {
       const fetchUser = async () => {
-        const { data } = await axios.get('http://localhost:8000/api/teams/1', {
-          headers: { Authorization: `Token ${authState.token}` }
-        })
+        const { data } = await publicFetch.get('/teams/1')
         setUsers(data)
       }
 
