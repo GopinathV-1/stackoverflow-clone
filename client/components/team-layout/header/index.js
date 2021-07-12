@@ -65,6 +65,13 @@ const Header = ({ className, ...props }) => {
             <Button
               className={styles.auth}
               secondary
+              onClick={() => handleComponentVisible(true, 'create team')}
+            >
+              Create team
+            </Button>
+            <Button
+              className={styles.auth}
+              secondary
               onClick={() => handleComponentVisible(true, 'login')}
             >
               Log in
