@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
 
 import NavItem from './nav-item'
 import { World } from '../icons'
+import { AuthContext } from '../../store/auth'
 
 import styles from './navigation.module.css'
+import ModalContext from '../../store/modal'
 
 const Navigation = () => {
   const router = useRouter()
+  const { isAuthenticated } = useContext(AuthContext)
+  const { handleComponentVisible } = useContext(ModalContext)
 
   return (
     <nav className={styles.nav}>
@@ -35,9 +39,19 @@ const Navigation = () => {
         <span>Unanswered</span>
       </NavItem>
       <br />
-      <NavItem href="/teams" selected={router.pathname == '/teams'}>
-        <span>Teams</span>
-      </NavItem>
+
+      {isAuthenticated() ? (
+        <NavItem href="/teams" selected={router.pathname == '/teams'}>
+          <span>Your Teams</span>
+        </NavItem>
+      ) : (
+        <span
+          className="styles.spanbutton"
+          onClick={() => handleComponentVisible(true, 'create team')}
+        >
+          Create team +
+        </span>
+      )}
     </nav>
   )
 }
