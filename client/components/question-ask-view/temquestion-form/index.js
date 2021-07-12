@@ -20,7 +20,7 @@ const TeamQuestionForm = () => {
 
   return (
     <Formik
-      initialValues={{ title: '', text: '', tags: [], team: 1 }}
+      initialValues={{ title: '', text: '', tags: [], team: '' }}
       onSubmit={async (values, { setStatus, resetForm }) => {
         setLoading(true)
         try {
@@ -59,6 +59,7 @@ const TeamQuestionForm = () => {
         isSubmitting
       }) => (
         <form onSubmit={handleSubmit}>
+
           <div className={styles.container}>
             <FormInput
               label="Title"

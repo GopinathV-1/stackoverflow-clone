@@ -52,7 +52,7 @@ urlpatterns = [
     path('api/comment/question/<int:question_id>/<int:comment_id>',
          views.CommentQuestion.as_view()),
     path(
-        'api/comment/answer/<int:question_id>/<int:answer_id>/<int:comment_id>', # noqa
+        'api/comment/answer/<int:question_id>/<int:answer_id>/<int:comment_id>',  # noqa
         views.CommentAnswer.as_view()
     ),
 
@@ -86,6 +86,6 @@ urlpatterns = [
     ),
     path(
         'api/teams/create',
-        views.CreateTeamQuestion.as_views()
+        views.CreateTeamQuestion.as_view()
     )
 ]
