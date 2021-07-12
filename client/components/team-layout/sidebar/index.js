@@ -1,12 +1,9 @@
-import React from 'react'
 import cn from 'classnames'
-
 import { useRouter } from 'next/router'
-
-import NavItem from '../../navigation/nav-item'
-
-import styles from './sidebar.module.css'
+import React from 'react'
 import { IoLockClosed } from 'react-icons/io5'
+import NavItem from '../../navigation/nav-item'
+import styles from './sidebar.module.css'
 
 const Sidebar = ({ className, ...props }) => {
   const router = useRouter()
