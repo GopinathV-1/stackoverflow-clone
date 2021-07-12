@@ -27,7 +27,7 @@ class CommentInline(admin.TabularInline):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('author', 'title', 'score', 'views')
+    list_display = ('author', 'title', 'score', 'views', 'team')
     list_filter = ('created',)
     search_fields = ('title', 'text')
     inlines = [

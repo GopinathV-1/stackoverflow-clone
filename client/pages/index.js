@@ -101,7 +101,6 @@ const HomePage = () => {
           <Spinner />
         </div>
       )}
-
       {questions
         ?.sort(handleSorting())
         .map(
@@ -114,25 +113,27 @@ const HomePage = () => {
             text,
             tags,
             author,
-            created
-          }) => (
-            <QuestionWrapper key={id}>
-              <QuestionStats
-                voteCount={votes.length}
-                answerCount={answers.length}
-                view={views}
-              />
-              <QuestionSummary
-                id={id}
-                title={title}
-                tags={tags}
-                author={author}
-                createdTime={created}
-              >
-                {text}
-              </QuestionSummary>
-            </QuestionWrapper>
-          )
+            created,
+            team
+          }) =>
+            team ? null : (
+              <QuestionWrapper key={id}>
+                <QuestionStats
+                  voteCount={votes.length}
+                  answerCount={answers.length}
+                  view={views}
+                />
+                <QuestionSummary
+                  id={id}
+                  title={title}
+                  tags={tags}
+                  author={author}
+                  createdTime={created}
+                >
+                  {text}
+                </QuestionSummary>
+              </QuestionWrapper>
+            )
         )}
     </Layout>
   )
