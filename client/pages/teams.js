@@ -24,7 +24,7 @@ const Teams = () => {
   useEffect(() => {
     if (searchTerm === null) {
       const fetchteam = async () => {
-        const { data } = await publicFetch.get('/teams/1')
+        const { data } = await publicFetch.get('/teamlist/1')
         setteam(data)
       }
 
