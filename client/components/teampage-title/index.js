@@ -5,9 +5,9 @@ import { AuthContext } from '../../store/auth'
 
 import Button from '../button'
 
-import styles from './page-title.module.css'
+import styles from './teampage-title.module.css'
 
-const PageTitle = ({ title, button, borderBottom = true, children }) => {
+const TeamPageTitle = ({ title, button, borderBottom = true, children }) => {
   const { isAuthenticated } = useContext(AuthContext)
 
   return (
@@ -20,7 +20,7 @@ const PageTitle = ({ title, button, borderBottom = true, children }) => {
               href={isAuthenticated() ? '/questions/ask' : '/auth'}
               primary
             >
-              {'Ask Question'}
+              {'Ask Private Question'}
             </Button>
           )}
         </div>
@@ -30,4 +30,4 @@ const PageTitle = ({ title, button, borderBottom = true, children }) => {
   )
 }
 
-export default PageTitle
+export default TeamPageTitle

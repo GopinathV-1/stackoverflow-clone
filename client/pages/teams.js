@@ -11,6 +11,7 @@ import QuestionSummary from '../components/question/question-summary'
 import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
+import TeamPageTitle from '../components/teampage-title'
 
 const Teams = () => {
   const router = useRouter()
@@ -23,12 +24,7 @@ const Teams = () => {
           Stackoverflow
         </title>
       </Head>
-      <PageTitle
-        title={'Your Teams'}
-        buttonname={'Ask Private Question'}
-        button
-        borderBottom={false}
-      />
+      <TeamPageTitle title={'Your Teams'} button borderBottom={false} />
     </TeamLayout>
   )
 }
