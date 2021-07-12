@@ -498,8 +498,6 @@ class Approve(APIView):
 class ListTeamUser(APIView):
     '''Api view for list all users of team'''
 
-    permission_classes = [IsAuthenticated]
-
     def get(self, request, team_id):
         '''method for handeling get request'''
 
