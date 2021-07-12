@@ -17,7 +17,8 @@ from stackoverflow.serializers import (AnswerSerializer, SignupSerializer,
                                        TagSerializer,
                                        AnswerPostSerializer,
                                        CommentPostSerializer,
-                                       TeamCreateSerializer)
+                                       TeamCreateSerializer,
+                                       PrivateQuestionPostSerializer)
 
 
 class Signup(APIView):
@@ -551,11 +552,12 @@ class CreateTeamQuestion(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        print(request.data)
-        request.data['team'] = request.data.get('team')
+        request.data['author'] = request.user.id
+        request.data['team'] = int(request.data['team'])
+
         # passing the data to serializer for overriding create
 
-        serializer = QuestionPostSerializer(data=request.data)
+        serializer = PrivateQuestionPostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=201)

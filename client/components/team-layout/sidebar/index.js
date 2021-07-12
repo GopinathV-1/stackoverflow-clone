@@ -1,12 +1,9 @@
-import React from 'react'
 import cn from 'classnames'
-
 import { useRouter } from 'next/router'
-
-import NavItem from '../../navigation/nav-item'
-
-import styles from './sidebar.module.css'
+import React from 'react'
 import { IoLockClosed } from 'react-icons/io5'
+import NavItem from '../../navigation/nav-item'
+import styles from './sidebar.module.css'
 
 const Sidebar = ({ className, ...props }) => {
   const router = useRouter()
@@ -14,19 +11,16 @@ const Sidebar = ({ className, ...props }) => {
   return (
     <nav className={cn(styles.sidebar, className)} {...props}>
       <NavItem
-        href="/"
+        href="/teams"
         selected={
-          router.pathname == '/' || router.pathname.split('/')[1] == 'questions'
+          router.pathname == '/teams' ||
+          router.pathname.split('/')[1] == 'questions'
         }
       >
         <div>
           <img
             className={styles.avatar}
-            src={
-              'https://secure.gravatar.com/avatar/' +
-              Math.floor(Math.random() * 100) +
-              '?s=120&d=identicon'
-            }
+            src={'https://secure.gravatar.com/avatar/1?s=120&d=identicon'}
           />
           <span>
             <h2 className={styles.teamname}>Your Team</h2>
