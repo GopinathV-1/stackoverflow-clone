@@ -527,7 +527,6 @@ class CreateTeams(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(status=201)
-        print(serializer.errors)
         return Response(serializer.errors)
 
 
