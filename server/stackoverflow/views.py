@@ -541,3 +541,7 @@ class ListTeamQuestions(APIView):
         # serializing data
         serializer = QuestionSerializer(questions, many=True)
         return Response(serializer.data)
+
+
+class CreateTeamQuestion(APIView):
+    pass
