@@ -14,7 +14,21 @@ import { Spinner } from '../components/icons'
 import TeamPageTitle from '../components/teampage-title'
 
 const Teams = () => {
+  const [team, setteam] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [searchTerm, setSearchTerm] = useState(null)
   const router = useRouter()
+
+  useEffect(() => {
+    if (searchTerm === null) {
+      const fetchteam = async () => {
+        const { data } = await publicFetch.get('/teams/')
+        setteam(data)
+      }
+
+      fetchteam()
+    }
+  }, [searchTerm])
 
   return (
     <TeamLayout>
@@ -24,7 +38,32 @@ const Teams = () => {
           Stackoverflow
         </title>
       </Head>
+
       <TeamPageTitle title={'Your Teams'} button borderBottom={false} />
+
+      {!team && (
+        <div className="loading">
+          <Spinner />
+        </div>
+      )}
+      {team && (
+        <>
+          <UserList>
+            {team?.map(({ username, profilePhoto, created, id }) => (
+              <UserItem
+                key={id}
+                username={username}
+                profilePhoto={profilePhoto}
+                created={created}
+              />
+            ))}
+          </UserList>
+
+          {team.length == 0 && (
+            <p className="not-found">No team matched your search.</p>
+          )}
+        </>
+      )}
     </TeamLayout>
   )
 }
