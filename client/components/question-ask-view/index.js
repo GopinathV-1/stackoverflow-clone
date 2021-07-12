@@ -7,7 +7,7 @@ const QuestionAskView = ({ children }) => {
     <div className={styles.layout}>
       <div className={styles.container}>
         <div className={styles.topForm}>
-          <h1>Ask a public question</h1>
+          <h1>Ask a question</h1>
         </div>
         {children}
       </div>

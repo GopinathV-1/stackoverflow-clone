@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { publicFetch } from '../util/fetcher'
-import Layout from '../components/layout'
+import TeamLayout from '../components/team-layout'
 import SearchInput from '../components/search-input'
 import QuestionWrapper from '../components/question/question-wrapper'
 import QuestionStats from '../components/question/question-stats'
 import QuestionSummary from '../components/question/question-summary'
-import PageTitle from '../components/page-title'
+import TeamPageTitle from '../components/teampage-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
 
@@ -30,7 +30,8 @@ const HomePage = () => {
     } else {
       if (searchTerm === null || searchTerm === '') {
         const fetchQuestion = async () => {
-          const { data } = await publicFetch.get('/question')
+          const { data } = await publicFetch.get('teams/questions/2')
+          console.log(data)
           setQuestions(data)
         }
         fetchQuestion()
@@ -64,7 +65,7 @@ const HomePage = () => {
   }
 
   return (
-    <Layout>
+    <TeamLayout>
       <Head>
         <title>
           {router.query.tag ? router.query.tag : 'Questions'} - Clone of
@@ -72,22 +73,14 @@ const HomePage = () => {
         </title>
       </Head>
 
-      <PageTitle
+      <TeamPageTitle
         title={
           router.query.tag
             ? `Questions tagged [${router.query.tag}]`
-            : 'All Questions'
+            : 'Team Questions'
         }
         button
         borderBottom={false}
-      />
-      <SearchInput
-        placeholder="Search by title"
-        isLoading={loading}
-        autoFocus
-        autoComplete="off"
-        type="text"
-        onChange={(e) => setSearchTerm(e.target.value)}
       />
       <ButtonGroup
         borderBottom
@@ -101,6 +94,7 @@ const HomePage = () => {
           <Spinner />
         </div>
       )}
+
       {questions
         ?.sort(handleSorting())
         .map(
@@ -113,29 +107,27 @@ const HomePage = () => {
             text,
             tags,
             author,
-            created,
-            team
-          }) =>
-            team ? null : (
-              <QuestionWrapper key={id}>
-                <QuestionStats
-                  voteCount={votes.length}
-                  answerCount={answers.length}
-                  view={views}
-                />
-                <QuestionSummary
-                  id={id}
-                  title={title}
-                  tags={tags}
-                  author={author}
-                  createdTime={created}
-                >
-                  {text}
-                </QuestionSummary>
-              </QuestionWrapper>
-            )
+            created
+          }) => (
+            <QuestionWrapper key={id}>
+              <QuestionStats
+                voteCount={votes.length}
+                answerCount={answers.length}
+                view={views}
+              />
+              <QuestionSummary
+                id={id}
+                title={title}
+                tags={tags}
+                author={author}
+                createdTime={created}
+              >
+                {text}
+              </QuestionSummary>
+            </QuestionWrapper>
+          )
         )}
-    </Layout>
+    </TeamLayout>
   )
 }
 

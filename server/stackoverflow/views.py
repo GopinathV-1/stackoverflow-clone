@@ -527,3 +527,36 @@ class CreateTeams(APIView):
             serializer.save()
             return Response(status=201)
         return Response(serializer.errors)
+
+
+class ListTeamQuestions(APIView):
+    '''Api view for user searching'''
+
+    def get(self, request, t_id):
+        '''method to handle get requests'''
+
+        # querying users and attach profile to convert required format
+        questions = Question.objects.filter(team=t_id)
+
+        # serializing data
+        serializer = QuestionSerializer(questions, many=True)
+        return Response(serializer.data)
+
+
+class CreateTeamQuestion(APIView):
+    '''
+    Post the team question
+    with particular tag
+    '''
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        print(request.data)
+        request.data['team'] = request.data.get('team')
+        # passing the data to serializer for overriding create
+
+        serializer = QuestionPostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=201)
+        return Response(serializer.errors)

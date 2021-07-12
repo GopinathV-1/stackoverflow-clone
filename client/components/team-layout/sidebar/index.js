@@ -38,16 +38,13 @@ const Sidebar = ({ className, ...props }) => {
         </div>
       </NavItem>
 
-      <NavItem href="/tags" selected={router.pathname == '/tags'}>
+      <NavItem
+        href="/team-questions"
+        selected={router.pathname == '/team-questions'}
+      >
         <span>Team Questions</span>
       </NavItem>
 
-      <NavItem
-        href="/users"
-        selected={router.pathname.split('/')[1] == 'users'}
-      >
-        <span>Team Tag</span>
-      </NavItem>
       <NavItem href="/teamlist" selected={router.pathname == '/teamlist'}>
         <span>Team Members</span>
       </NavItem>
