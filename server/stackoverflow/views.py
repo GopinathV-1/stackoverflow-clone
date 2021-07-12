@@ -544,4 +544,19 @@ class ListTeamQuestions(APIView):
 
 
 class CreateTeamQuestion(APIView):
-    pass
+    '''
+    Post the team question
+    with particular tag
+    '''
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        print(request.data)
+        request.data['team'] = request.data.get('team')
+        # passing the data to serializer for overriding create
+
+        serializer = QuestionPostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=201)
+        return Response(serializer.errors)
