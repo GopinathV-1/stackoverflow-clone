@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+
 from stackoverflow import views
 
 urlpatterns = [
@@ -87,5 +88,9 @@ urlpatterns = [
     path(
         'api/teams/create',
         views.CreateTeamQuestion.as_view()
+    ),
+    path(
+        'api/teams/<int:u_id>',
+        views.TeamList.as_view()
     )
 ]
