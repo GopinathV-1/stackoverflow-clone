@@ -17,7 +17,7 @@ const TeamPageTitle = ({ title, button, borderBottom = true, children }) => {
         <div className={styles.buttonContainer}>
           {button && (
             <Button
-              href={isAuthenticated() ? '/questions/ask' : '/auth'}
+              href={isAuthenticated() ? '/questions/teamask' : '/auth'}
               primary
             >
               {'Ask Private Question'}
