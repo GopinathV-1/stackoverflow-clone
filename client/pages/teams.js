@@ -12,6 +12,8 @@ import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
 import TeamPageTitle from '../components/teampage-title'
+import UserList from '../components/user-list'
+import UserItem from '../components/user-list/user-item'
 
 const Teams = () => {
   const [team, setteam] = useState(null)
@@ -22,7 +24,7 @@ const Teams = () => {
   useEffect(() => {
     if (searchTerm === null) {
       const fetchteam = async () => {
-        const { data } = await publicFetch.get('/teams/')
+        const { data } = await publicFetch.get('/teams/1')
         setteam(data)
       }
 
@@ -46,6 +48,7 @@ const Teams = () => {
           <Spinner />
         </div>
       )}
+      {console.log(team)}
       {team && (
         <>
           <UserList>
