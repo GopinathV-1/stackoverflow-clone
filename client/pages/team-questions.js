@@ -7,7 +7,7 @@ import SearchInput from '../components/search-input'
 import QuestionWrapper from '../components/question/question-wrapper'
 import QuestionStats from '../components/question/question-stats'
 import QuestionSummary from '../components/question/question-summary'
-import PageTitle from '../components/page-title'
+import TeamPageTitle from '../components/teampage-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
 
@@ -73,7 +73,7 @@ const HomePage = () => {
         </title>
       </Head>
 
-      <PageTitle
+      <TeamPageTitle
         title={
           router.query.tag
             ? `Questions tagged [${router.query.tag}]`
