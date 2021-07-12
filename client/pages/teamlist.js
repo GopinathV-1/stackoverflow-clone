@@ -8,9 +8,6 @@ import UserList from '../components/user-list'
 import UserItem from '../components/user-list/user-item'
 import { AuthContext } from '../store/auth'
 
-
-
-
 function TeamPage() {
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -18,13 +15,13 @@ function TeamPage() {
   useEffect(() => {
     {
       const fetchUser = async () => {
-        const { data } = await axios.get('http://localhost:8000/api/teams/1', )
+        const { data } = await axios.get('http://localhost:8000/api/teams/1')
         setUsers(data)
       }
 
       fetchUser()
     }
-  }, [searchTerm])
+  }, [authState.token])
 
   return (
     <TeamLayout extra={false}>
