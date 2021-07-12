@@ -1,24 +1,22 @@
-from rest_framework.views import APIView
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth.models import User
+from django.db.models import Count, F
+from rest_framework import generics, status
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from stackoverflow.helper import (attach_profile, calculate_score,
                                   delete_vote_object, went_wrong)
-from stackoverflow.models import Question, Tag, Answer, Vote, Comment, Team
-from django.db.models import Count, F
-from rest_framework.permissions import IsAuthenticated
-from rest_framework import generics
-from stackoverflow.serializers import (AnswerSerializer, SignupSerializer,
+from stackoverflow.models import Answer, Comment, Question, Tag, Team, Vote
+from stackoverflow.serializers import (AnswerPostSerializer, AnswerSerializer,
                                        AuthenticateSerializer,
-                                       UserInfoSerializer,
-                                       QuestionSerializer,
-                                       QuestionPostSerializer,
-                                       TagSerializer,
-                                       AnswerPostSerializer,
                                        CommentPostSerializer,
-                                       TeamCreateSerializer,
-                                       PrivateQuestionPostSerializer)
+                                       PrivateQuestionPostSerializer,
+                                       QuestionPostSerializer,
+                                       QuestionSerializer, SignupSerializer,
+                                       TagSerializer, TeamCreateSerializer,
+                                       UserInfoSerializer)
 
 
 class Signup(APIView):
@@ -517,10 +515,10 @@ class ListTeamUser(APIView):
 
 class CreateTeams(APIView):
 
-    #permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        request.data['author'] = request.user.id
+        print("user", request.user)
         print(request.user.id)
         # passing the data to serializer for overriding create
         print(request.data)
