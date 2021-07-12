@@ -41,17 +41,19 @@ const Navigation = () => {
       <br />
 
       {isAuthenticated() ? (
-        <NavItem href="/teams" selected={router.pathname == '/teams'}>
-          <span>Your Teams</span>
-        </NavItem>
-      ) : (
-        <span
-          className="styles.spanbutton"
-          onClick={() => handleComponentVisible(true, 'create team')}
-        >
-          Create team +
-        </span>
-      )}
+        <>
+          <span
+            className="styles.spanbutton"
+            onClick={() => handleComponentVisible(true, 'create team')}
+          >
+            Create team +
+          </span>
+
+          <NavItem href="/teams" selected={router.pathname == '/teams'}>
+            <span>Your Teams</span>
+          </NavItem>
+        </>
+      ) : null}
     </nav>
   )
 }

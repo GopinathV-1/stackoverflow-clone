@@ -263,7 +263,7 @@ class TeamCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-        field = '__all__'
+        fields = '__all__'
 
     def create(self, validated_data):
         member_of_team = validated_data.pop('members')
