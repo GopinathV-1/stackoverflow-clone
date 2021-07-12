@@ -29,24 +29,24 @@ const HomePage = () => {
       fetchQuestionByTag()
     } else {
       if (searchTerm === null || searchTerm === '') {
-      const fetchQuestion = async () => {
-        const { data } = await publicFetch.get('/question')
-        setQuestions(data)
-      }
-      fetchQuestion()
+        const fetchQuestion = async () => {
+          const { data } = await publicFetch.get('/question')
+          setQuestions(data)
+        }
+        fetchQuestion()
       } else {
         const delayDebounceFn = setTimeout(async () => {
           setLoading(true)
           const { data } = await publicFetch.get(
             searchTerm ? `/question/${searchTerm}` : `/title`
-            )
+          )
           setQuestions(data)
           setLoading(false)
         }, 500)
-      return () => clearTimeout(delayDebounceFn)
+        return () => clearTimeout(delayDebounceFn)
       }
     }
-  }, [ router.query.tag, searchTerm])
+  }, [router.query.tag, searchTerm])
 
   const handleSorting = () => {
     switch (sortType) {
@@ -72,7 +72,15 @@ const HomePage = () => {
         </title>
       </Head>
 
-      <PageTitle title={router.query.tag ? `Questions tagged [${router.query.tag}]` : 'All Questions'} button borderBottom={false} />
+      <PageTitle
+        title={
+          router.query.tag
+            ? `Questions tagged [${router.query.tag}]`
+            : 'All Questions'
+        }
+        button
+        borderBottom={false}
+      />
       <SearchInput
         placeholder="Search by title"
         isLoading={loading}
