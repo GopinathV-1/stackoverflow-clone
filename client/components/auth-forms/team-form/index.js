@@ -11,12 +11,13 @@ import FormInput from '../../form-input'
 import Button from '../../button'
 
 import styles from './team-form.module.css'
+import { useHistory } from 'react-router-dom'
 
 const CreateForm = () => {
   const { setIsComponentVisible } = useContext(ModalContext)
   const { authState } = useContext(AuthContext)
   const [loading, setLoading] = useState(false)
-  console.log(authState.token)
+  let history = useHistory()
   return (
     <Formik
       initialValues={{ teamname: '' }}
@@ -32,6 +33,7 @@ const CreateForm = () => {
           setStatus(error.response.data.message)
         }
         setLoading(false)
+        window.location.href = '/teams'
       }}
       validationSchema={Yup.object({
         teamname: Yup.string()
