@@ -86,6 +86,6 @@ urlpatterns = [
     ),
     path(
         'api/teams/create',
-        views.createTeamQuestion.as_views()
+        views.CreateTeamQuestion.as_views()
     )
 ]
