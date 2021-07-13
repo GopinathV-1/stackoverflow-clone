@@ -20,7 +20,7 @@ const Sidebar = ({ className, ...props }) => {
         <div>
           <img
             className={styles.avatar}
-            src={'https://secure.gravatar.com/avatar/1?s=120&d=identicon'}
+            src={`https://secure.gravatar.com/avatar/${props.t_id}?s=120&d=identicon`}
           />
           <span>
             <h2 className={styles.teamname}>Your Team</h2>

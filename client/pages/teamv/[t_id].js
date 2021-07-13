@@ -49,7 +49,7 @@ const UserDetail = ({ id }) => {
   }
 
   return (
-    <TeamLayout extra={false}>
+    <TeamLayout extra={false} t_id={id}>
       <Head>
         <title>
           {router.query.tag ? router.query.tag : 'Questions'} - Clone of
