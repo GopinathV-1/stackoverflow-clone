@@ -581,6 +581,6 @@ class Teamdetails(APIView):
     '''
 
     def get(self, request, team_id):
-        team = Team.objects.filter(id=team_id).first()
-        team_details = TeamSerializer(team)
+        team = Team.objects.filter(id=team_id)
+        team_details = TeamSerializer(team, many=True)
         return Response(team_details.data)
