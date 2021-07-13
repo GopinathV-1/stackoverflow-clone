@@ -1,31 +1,36 @@
 import axios from 'axios'
 import Head from 'next/head'
 import React, { useContext, useEffect, useState } from 'react'
-import { Spinner } from '../components/icons'
-import PageTitle from '../components/page-title'
-import TeamLayout from '../components/team-layout'
-import UserList from '../components/user-list'
-import UserItem from '../components/user-list/user-item'
-import { AuthContext } from '../store/auth'
+import { Spinner } from '../../../components/icons'
+import PageTitle from '../../../components/page-title'
+import TeamLayout from '../../../components/team-layout'
+import UserList from '../../../components/user-list'
+import UserItem from '../../../components/user-list/user-item'
+import { AuthContext } from '../../../store/auth'
+import { useRouter } from 'next/router'
 
-function TeamPage() {
+function TeamPage({ id }) {
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(false)
   const { authState } = useContext(AuthContext)
-  // authState.userInfo.id
+  const router = useRouter()
+
   useEffect(() => {
     {
       const fetchUser = async () => {
-        const { data } = await axios.get('http://localhost:8000/api/teams/1')
+        const { data } = await axios.get(
+          `http://localhost:8000/api/teams/${id}`
+        )
         setUsers(data)
       }
 
       fetchUser()
     }
   }, [authState.token])
+  console.log(users)
 
   return (
-    <TeamLayout extra={false}>
+    <TeamLayout extra={false} t_id={id}>
       <Head>
         <title>Team - Clone of Stackoverflow</title>
       </Head>
@@ -58,6 +63,14 @@ function TeamPage() {
       )}
     </TeamLayout>
   )
+}
+export async function getServerSideProps(context) {
+  const id = context.params.t_id
+  return {
+    props: {
+      id
+    }
+  }
 }
 
 export default TeamPage

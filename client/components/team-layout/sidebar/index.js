@@ -7,6 +7,7 @@ import { IoLockClosed } from 'react-icons/io5'
 import NavItem from '../../navigation/nav-item'
 import styles from './sidebar.module.css'
 import { publicFetch } from '../../../util/fetcher'
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 
 const Sidebar = ({ className, ...props }) => {
   const [team, setTeam] = useState(null)
@@ -58,12 +59,17 @@ const Sidebar = ({ className, ...props }) => {
         <span>Team Questions</span>
       </NavItem>
 
-      <NavItem href="/teamlist" selected={router.pathname == '/teamlist'}>
+      <NavItem
+        href={`/team/teammembers/${props.t_id}`}
+        selected={router.pathname == `/team/teammembers/${props.t_id}`}
+      >
         <span>Team Members</span>
       </NavItem>
       <br />
-      <NavItem href="/teams" selected={router.pathname == '/teams'}>
-        <span>My Team</span>
+      <NavItem href="/" selected={router.pathname == '/home'}>
+        <span>
+          <KeyboardBackspaceIcon /> Back
+        </span>
       </NavItem>
     </nav>
   )
