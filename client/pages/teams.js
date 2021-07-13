@@ -52,11 +52,15 @@ const Teams = () => {
       {team && (
         <>
           <UserList>
-            {team?.map(({ username, profilePhoto, created, id }) => (
+            {team?.map(({ name, created, id }) => (
               <UserItem
                 key={id}
-                username={username}
-                profilePhoto={profilePhoto}
+                username={name}
+                profilePhoto={
+                  'https://secure.gravatar.com/avatar/' +
+                  id +
+                  '?s=120&d=identicon'
+                }
                 created={created}
               />
             ))}
