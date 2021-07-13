@@ -17,9 +17,9 @@ const TeamQuestionForm = ({ t_id }) => {
   const { authAxios } = useContext(FetchContext)
 
   const [loading, setLoading] = useState(false)
-  console.log('ye agyi', t_id)
+
   let team_id = String(t_id)
-  console.log(team_id)
+
   return (
     <Formik
       initialValues={{ title: '', text: '', tags: [], team: team_id }}
@@ -28,7 +28,7 @@ const TeamQuestionForm = ({ t_id }) => {
         try {
           await authAxios.post('teams/create', values)
           resetForm({})
-          router.push('/')
+          router.push(`/teamv/${t_id}`)
         } catch (error) {
           setStatus(error.response.data.message)
         }
