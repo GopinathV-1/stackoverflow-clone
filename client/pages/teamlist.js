@@ -12,6 +12,7 @@ function TeamPage() {
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(false)
   const { authState } = useContext(AuthContext)
+  // authState.userInfo.id
   useEffect(() => {
     {
       const fetchUser = async () => {
