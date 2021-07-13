@@ -41,7 +41,7 @@ const Teams = () => {
         </title>
       </Head>
 
-      <TeamPageTitle title={'Your Teams'} button borderBottom={false} />
+      <TeamPageTitle title={'Your Teams'} borderBottom={false} />
 
       {!team && (
         <div className="loading">
