@@ -8,11 +8,12 @@ import styles from './sidebar.module.css'
 import { AuthContext } from '../../../store/auth'
 
 const Sidebar = ({ className, ...props }) => {
+  const [team, setTeam] = useState(null)
+  const { authState } = useContext(AuthContext)
+
   const router = useRouter()
   const id = parseInt(window.location.pathname.split("/")[2])
-  const [team, setTeam] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const { authState } = useContext(AuthContext)
+
   useEffect(() => {
     {
       const fetchTeam = async () => {
@@ -23,7 +24,7 @@ const Sidebar = ({ className, ...props }) => {
       fetchTeam()
     }
   }, [authState.token])
-  console.log(team)
+
   return (
     <nav className={cn(styles.sidebar, className)} {...props}>
       <NavItem
