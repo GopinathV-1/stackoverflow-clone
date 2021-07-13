@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { publicFetch } from '../util/fetcher'
 
-import TeamLayout from '../components/team-layout'
+import Layout from '../components/layout'
 import QuestionWrapper from '../components/question/question-wrapper'
 import QuestionStats from '../components/question/question-stats'
 import QuestionSummary from '../components/question/question-summary'
@@ -33,7 +33,7 @@ const Teams = () => {
   }, [searchTerm])
 
   return (
-    <TeamLayout>
+    <Layout>
       <Head>
         <title>
           {router.query.tag ? router.query.tag : 'Questions'} - Clone of
@@ -67,7 +67,7 @@ const Teams = () => {
           )}
         </>
       )}
-    </TeamLayout>
+    </Layout>
   )
 }
 
