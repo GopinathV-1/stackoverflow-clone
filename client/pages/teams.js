@@ -24,20 +24,22 @@ const Teams = () => {
   const [searchTerm, setSearchTerm] = useState(null)
   const router = useRouter()
   const { authState } = useContext(AuthContext)
-  console.log(authState.userInfo, 'authstate')
 
   useEffect(() => {
-    if (searchTerm === null) {
+    {
       const fetchteam = async () => {
-        const { data } = await publicFetch.get(
-          `/teamlist/${authState.userInfo.id}`
-        )
-        setteam(data)
+        if (authState.userInfo !== undefined) {
+          const { data } = await publicFetch.get(
+            `/teamlist/${authState.userInfo.id}`
+          )
+          setteam(data)
+        } else {
+          setLoading(true)
+        }
       }
-
       fetchteam()
     }
-  }, [])
+  }, [loading])
 
   return (
     <Layout>
@@ -48,14 +50,13 @@ const Teams = () => {
         </title>
       </Head>
 
-      <TeamPageTitle title={'Your Teams'} button borderBottom={false} />
+      <TeamPageTitle title={'Your Teams'} borderBottom={false} />
 
       {!team && (
         <div className="loading">
           <Spinner />
         </div>
       )}
-      {console.log(team)}
       {team && (
         <>
           <TeamList>
