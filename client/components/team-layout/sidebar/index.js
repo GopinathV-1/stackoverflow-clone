@@ -40,7 +40,7 @@ const Sidebar = ({ className, ...props }) => {
             src={`https://secure.gravatar.com/avatar/${props.t_id}?s=120&d=identicon`}
           />
           <span>
-            <h2 className={styles.teamname}>{team.name}</h2>
+            <h2 className={styles.teamname}>{team?team.name:"loading..."}</h2>
           </span>
           <span>
             <IoLockClosed />
@@ -50,7 +50,7 @@ const Sidebar = ({ className, ...props }) => {
       </NavItem>
 
       <NavItem
-        href="/team-questions"
+        href="/team-questions/"
         selected={router.pathname == '/team-questions'}
       >
         <span>Team Questions</span>
