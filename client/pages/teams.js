@@ -24,20 +24,22 @@ const Teams = () => {
   const [searchTerm, setSearchTerm] = useState(null)
   const router = useRouter()
   const { authState } = useContext(AuthContext)
-  console.log(authState.userInfo, 'authstate')
 
   useEffect(() => {
-    if (searchTerm === null) {
+    {
       const fetchteam = async () => {
-        const { data } = await publicFetch.get(
-          `/teamlist/${authState.userInfo.id}`
-        )
-        setteam(data)
+        if (authState.userInfo !== undefined) {
+          const { data } = await publicFetch.get(
+            `/teamlist/${authState.userInfo.id}`
+          )
+          setteam(data)
+        } else {
+          setLoading(true)
+        }
       }
-
       fetchteam()
     }
-  }, [])
+  }, [loading])
 
   return (
     <Layout>
@@ -55,14 +57,13 @@ const Teams = () => {
           <Spinner />
         </div>
       )}
-      {console.log(team)}
       {team && (
         <>
           <TeamList>
             {team?.map(({ name, created, id }) => (
               <TeamItem
                 key={id}
-                username={name}
+                name={name}
                 profilePhoto={
                   'https://secure.gravatar.com/avatar/' +
                   id +
