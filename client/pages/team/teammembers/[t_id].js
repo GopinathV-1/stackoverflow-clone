@@ -30,7 +30,7 @@ function TeamPage({ id }) {
   console.log(users)
 
   return (
-    <TeamLayout extra={false}>
+    <TeamLayout extra={false} t_id={id}>
       <Head>
         <title>Team - Clone of Stackoverflow</title>
       </Head>
