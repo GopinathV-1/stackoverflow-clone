@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { useState, useEffect } from 'react'
 import { route } from 'next/dist/next-server/server/router'
 import { useRouter } from 'next/router'
-import React, { useContext, useEffect, useState } from 'react'
+
 import { IoLockClosed } from 'react-icons/io5'
 import NavItem from '../../navigation/nav-item'
 import styles from './sidebar.module.css'
@@ -10,15 +10,13 @@ import { publicFetch } from '../../../util/fetcher'
 
 const Sidebar = ({ className, ...props }) => {
   const [team, setTeam] = useState(null)
-  const { authState } = useContext(AuthContext)
 
   const router = useRouter()
-  console.log(props)
-  const [team, setteam] = useState(null)
+
   useEffect(() => {
     const fetchteam = async () => {
       const { data } = await publicFetch.get(`/team-detail/${props.t_id}`)
-      setteam(data)
+      setTeam(data)
     }
     fetchteam()
   }, [])
