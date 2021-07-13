@@ -58,7 +58,10 @@ const Sidebar = ({ className, ...props }) => {
         <span>Team Questions</span>
       </NavItem>
 
-      <NavItem href="/teamlist" selected={router.pathname == '/teamlist'}>
+      <NavItem
+        href={`/team/teammembers/${props.t_id}`}
+        selected={router.pathname == `/team/teammembers/${props.t_id}`}
+      >
         <span>Team Members</span>
       </NavItem>
       <br />
