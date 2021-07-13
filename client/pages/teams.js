@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { publicFetch } from '../util/fetcher'
 
-import TeamLayout from '../components/team-layout'
+import Layout from '../components/layout'
 import QuestionWrapper from '../components/question/question-wrapper'
 import QuestionStats from '../components/question/question-stats'
 import QuestionSummary from '../components/question/question-summary'
@@ -15,6 +15,8 @@ import TeamPageTitle from '../components/teampage-title'
 import UserList from '../components/user-list'
 import UserItem from '../components/user-list/user-item'
 import { AuthContext } from '../store/auth'
+import TeamList from '../components/team-list'
+import TeamItem from '../components/team-list/team-item'
 
 const Teams = () => {
   const [team, setteam] = useState(null)
@@ -38,7 +40,7 @@ const Teams = () => {
   }, [])
 
   return (
-    <TeamLayout>
+    <Layout>
       <Head>
         <title>
           {router.query.tag ? router.query.tag : 'Questions'} - Clone of
@@ -56,9 +58,9 @@ const Teams = () => {
       {console.log(team)}
       {team && (
         <>
-          <UserList>
+          <TeamList>
             {team?.map(({ name, created, id }) => (
-              <UserItem
+              <TeamItem
                 key={id}
                 username={name}
                 profilePhoto={
@@ -69,14 +71,14 @@ const Teams = () => {
                 created={created}
               />
             ))}
-          </UserList>
+          </TeamList>
 
           {team.length == 0 && (
             <p className="not-found">No team matched your search.</p>
           )}
         </>
       )}
-    </TeamLayout>
+    </Layout>
   )
 }
 
