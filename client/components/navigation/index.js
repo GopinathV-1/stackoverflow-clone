@@ -7,6 +7,8 @@ import { AuthContext } from '../../store/auth'
 
 import styles from './navigation.module.css'
 import ModalContext from '../../store/modal'
+import AddIcon from '@material-ui/icons/Add'
+import { Button, Container } from '@material-ui/core'
 
 const Navigation = () => {
   const router = useRouter()
@@ -42,12 +44,17 @@ const Navigation = () => {
 
       {isAuthenticated() ? (
         <>
-          <span
-            className="styles.spanbutton"
-            onClick={() => handleComponentVisible(true, 'create team')}
-          >
-            Create team +
-          </span>
+          <div className={styles.buttoncontainer}>
+            <Button
+              className={styles.button}
+              onClick={() => handleComponentVisible(true, 'create team')}
+            >
+              <span className={styles.icon}>
+                <AddIcon />
+              </span>
+              <span className={styles.text}>Create Team</span>
+            </Button>
+          </div>
 
           <NavItem href="/teams" selected={router.pathname == '/teams'}>
             <span>Your Teams</span>

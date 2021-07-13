@@ -4,6 +4,17 @@
     width: auto;
     cursor: pointer;
 }
-.spanbutton{
-    margin-left: 10%;
+
+.button {
+    justify-content: space-around;
+    width: 100%;
+}
+
+.icon {
+    padding-right:3%;
+    line-height: 1.2em;
+}
+.text{
+    padding-right: 25%;
+    font-weight: 600;
 }
