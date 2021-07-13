@@ -22,7 +22,7 @@ const TeamQuestionForm = ({ t_id }) => {
   console.log(team_id)
   return (
     <Formik
-      initialValues={{ title: '', text: '', tags: [], team: t_id }}
+      initialValues={{ title: '', text: '', tags: [], team: team_id }}
       onSubmit={async (values, { setStatus, resetForm }) => {
         setLoading(true)
         try {
