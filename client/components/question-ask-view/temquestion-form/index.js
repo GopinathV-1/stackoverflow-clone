@@ -12,15 +12,17 @@ import TagInput from '../../tag-input'
 
 import styles from '../question-form/question-form.module.css'
 
-const TeamQuestionForm = () => {
+const TeamQuestionForm = ({ t_id }) => {
   const router = useRouter()
   const { authAxios } = useContext(FetchContext)
 
   const [loading, setLoading] = useState(false)
-
+  console.log('ye agyi', t_id)
+  let team_id = String(t_id)
+  console.log(team_id)
   return (
     <Formik
-      initialValues={{ title: '', text: '', tags: [], team: '1' }}
+      initialValues={{ title: '', text: '', tags: [], team: t_id }}
       onSubmit={async (values, { setStatus, resetForm }) => {
         setLoading(true)
         try {

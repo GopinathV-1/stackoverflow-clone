@@ -551,6 +551,7 @@ class CreateTeamQuestion(APIView):
 
     def post(self, request):
         request.data['author'] = request.user.id
+        print(request.data)
         request.data['team'] = int(request.data['team'])
 
         # passing the data to serializer for overriding create

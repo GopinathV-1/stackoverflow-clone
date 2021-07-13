@@ -7,7 +7,13 @@ import Button from '../button'
 
 import styles from './teampage-title.module.css'
 
-const TeamPageTitle = ({ title, button, borderBottom = true, children }) => {
+const TeamPageTitle = ({
+  title,
+  button,
+  borderBottom = true,
+  children,
+  t_id
+}) => {
   const { isAuthenticated } = useContext(AuthContext)
 
   return (
@@ -17,7 +23,7 @@ const TeamPageTitle = ({ title, button, borderBottom = true, children }) => {
         <div className={styles.buttonContainer}>
           {button && (
             <Button
-              href={isAuthenticated() ? '/questions/teamask' : '/auth'}
+              href={isAuthenticated() ? `/questions/teamask/${t_id}` : '/auth'}
               primary
             >
               {'Ask Private Question'}

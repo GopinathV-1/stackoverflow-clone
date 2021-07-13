@@ -57,6 +57,7 @@ const UserDetail = ({ id }) => {
       </Head>
 
       <TeamPageTitle
+        t_id={id}
         title={
           router.query.tag
             ? `Questions tagged [${router.query.tag}]`
