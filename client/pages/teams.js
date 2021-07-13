@@ -63,6 +63,7 @@ const Teams = () => {
             {team?.map(({ name, created, id }) => (
               <TeamItem
                 key={id}
+                id={id}
                 name={name}
                 profilePhoto={
                   'https://secure.gravatar.com/avatar/' +
