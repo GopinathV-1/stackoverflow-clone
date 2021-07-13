@@ -572,3 +572,14 @@ class TeamList(APIView):
         teams = Team.objects.filter(members=u_id)
         team_list = TeamSerializer(teams, many=True)
         return Response(team_list.data)
+
+
+class Teamdetails(APIView):
+    '''
+    To provide the detail of team
+    '''
+
+    def get(self, request, team_id):
+        team = Team.objects.filter(id=team_id)
+        team_details = TeamSerializer(team, many=True)
+        return Response(team_details.data)

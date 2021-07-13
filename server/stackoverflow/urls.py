@@ -92,5 +92,9 @@ urlpatterns = [
     path(
         'api/teamlist/<int:u_id>',
         views.TeamList.as_view()
+    ),
+    path(
+        'api/team-detail/<int:team_id>',
+        views.Teamdetails.as_view()
     )
 ]
