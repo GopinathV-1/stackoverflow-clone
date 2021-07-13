@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
@@ -12,6 +12,9 @@ import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
 import TeamPageTitle from '../components/teampage-title'
+import UserList from '../components/user-list'
+import UserItem from '../components/user-list/user-item'
+import { AuthContext } from '../store/auth'
 import TeamList from '../components/team-list'
 import TeamItem from '../components/team-list/team-item'
 
@@ -20,17 +23,21 @@ const Teams = () => {
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState(null)
   const router = useRouter()
+  const { authState } = useContext(AuthContext)
+  console.log(authState.userInfo, 'authstate')
 
   useEffect(() => {
     if (searchTerm === null) {
       const fetchteam = async () => {
-        const { data } = await publicFetch.get('/teamlist/2')
+        const { data } = await publicFetch.get(
+          `/teamlist/${authState.userInfo.id}`
+        )
         setteam(data)
       }
 
       fetchteam()
     }
-  }, [searchTerm])
+  }, [])
 
   return (
     <Layout>
