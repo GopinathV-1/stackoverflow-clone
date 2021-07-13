@@ -85,8 +85,19 @@ const UnAnsweredPage = () => {
       {questions
         ?.sort(handleSorting())
         .map(
-          ({ id, votes, answers, views, title, text, tags, author, created }) =>
-            answers.length === 0 ? (
+          ({
+            id,
+            votes,
+            answers,
+            views,
+            title,
+            text,
+            tags,
+            author,
+            created,
+            team
+          }) =>
+            team ? null : (
               <QuestionWrapper key={id}>
                 {(() => {
                   return (
@@ -111,7 +122,7 @@ const UnAnsweredPage = () => {
                   )
                 })()}
               </QuestionWrapper>
-            ) : null
+            )
         )}
       {flag ? (
         <QuestionWrapper>Looks Like No Problem for Now!!!</QuestionWrapper>
