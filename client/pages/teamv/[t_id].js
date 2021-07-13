@@ -3,12 +3,12 @@ import Head from 'next/head'
 
 import { publicFetch } from '../../util/fetcher'
 
-import Layout from '../../components/layout'
 import UserCard from '../../components/user-card'
 import AvatarCard from '../../components/user-card/avatar-card'
 import PostList from '../../components/user-card/post-list'
 import PostItem from '../../components/user-card/post-list/post-item'
 import { Spinner } from '../../components/icons'
+import TeamLayout from '../../components/team-layout'
 
 const UserDetail = ({ id }) => {
   const [posts, setPosts] = useState(null)
@@ -24,7 +24,7 @@ const UserDetail = ({ id }) => {
   }, [])
 
   return (
-    <Layout extra={false}>
+    <TeamLayout extra={false}>
       <Head>
         <title>Clone of Stackoverflow</title>
       </Head>
@@ -55,7 +55,7 @@ const UserDetail = ({ id }) => {
           )}
         </PostList>
       </UserCard>
-    </Layout>
+    </TeamLayout>
   )
 }
 
