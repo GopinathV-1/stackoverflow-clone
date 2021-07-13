@@ -28,7 +28,6 @@ const UserDetail = ({ id }) => {
     const fetchQuestions = async () => {
       const { data } = await publicFetch.get(`/teams/questions/${id}`)
       setPosts(data)
-      console.log(data)
     }
     fetchQuestions()
   }, [])

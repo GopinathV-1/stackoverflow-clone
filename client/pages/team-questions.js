@@ -30,7 +30,6 @@ const HomePage = () => {
       if (searchTerm === null || searchTerm === '') {
         const fetchQuestion = async () => {
           const { data } = await publicFetch.get('teams/questions/1')
-          console.log(data)
           setQuestions(data)
         }
         fetchQuestion()
