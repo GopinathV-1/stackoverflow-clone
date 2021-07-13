@@ -12,8 +12,8 @@ import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
 import TeamPageTitle from '../components/teampage-title'
-import UserList from '../components/user-list'
-import UserItem from '../components/user-list/user-item'
+import TeamList from '../components/team-list'
+import TeamItem from '../components/team-list/team-item'
 
 const Teams = () => {
   const [team, setteam] = useState(null)
@@ -51,9 +51,9 @@ const Teams = () => {
       {console.log(team)}
       {team && (
         <>
-          <UserList>
+          <TeamList>
             {team?.map(({ name, created, id }) => (
-              <UserItem
+              <TeamItem
                 key={id}
                 username={name}
                 profilePhoto={
@@ -64,7 +64,7 @@ const Teams = () => {
                 created={created}
               />
             ))}
-          </UserList>
+          </TeamList>
 
           {team.length == 0 && (
             <p className="not-found">No team matched your search.</p>
