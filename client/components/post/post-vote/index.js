@@ -6,8 +6,12 @@ import ModalContext from '../../../store/modal'
 
 import Button from '../../button'
 import { ArrowUp, ArrowDown } from '../../icons'
+import CloseIcon from '@material-ui/icons/Close'
+import CheckIcon from '@material-ui/icons/Check'
+import UpdateOutlinedIcon from '@material-ui/icons/UpdateOutlined'
+import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined'
+import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined'
 
-import { VscCheck, VscError } from 'react-icons/vsc'
 import {
   BsFillClockFill,
   BsFillPersonDashFill,
@@ -16,6 +20,7 @@ import {
 } from 'react-icons/bs'
 
 import styles from './post-vote.module.css'
+import ThumbDownOutlined from '@material-ui/icons/ThumbDownOutlined'
 
 const PostVote = ({
   score,
@@ -112,21 +117,21 @@ const PostVote = ({
                 className={styles.approveButtonnocomment}
                 onClick={() => handleApprove()}
               >
-                <BsFillPlusCircleFill />
+                <UpdateOutlinedIcon />
               </Button>
             ) : approve === 1 ? (
               <Button
                 className={styles.approveButtonapprove}
                 onClick={() => handleUnApprove()}
               >
-                <BsFillPersonCheckFill />
+                <ThumbUpAltOutlinedIcon />
               </Button>
             ) : (
               <Button
                 className={styles.approveButtondisapprove}
                 onClick={() => handleApprove()}
               >
-                <BsFillPersonDashFill />
+                <ThumbDownOutlined />
               </Button>
             )
           ) : approve === 0 ? (
@@ -135,11 +140,11 @@ const PostVote = ({
             </span>
           ) : approve === 1 ? (
             <span className={styles.Check}>
-              <VscCheck />
+              <CheckIcon />
             </span>
           ) : (
             <span className={styles.Wrong}>
-              <VscError />
+              <CloseIcon />
             </span>
           )
         ) : approve === 0 ? (
@@ -148,11 +153,11 @@ const PostVote = ({
           </span>
         ) : approve === 1 ? (
           <span className={styles.Check}>
-            <VscCheck />
+            <CheckIcon />
           </span>
         ) : (
           <span className={styles.Wrong}>
-            <VscError />
+            <CloseIcon />
           </span>
         )}
       </div>
