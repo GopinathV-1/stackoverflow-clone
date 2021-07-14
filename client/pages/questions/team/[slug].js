@@ -3,7 +3,6 @@ import Head from 'next/head'
 
 import { publicFetch } from '../../../util/fetcher'
 
-import Layout from '../../../components/layout'
 import PageTitle from '../../../components/page-title'
 import DetailPageContainer from '../../../components/detail-page-container'
 import PostWrapper from '../../../components/post/post-wrapper'
