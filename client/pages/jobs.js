@@ -70,50 +70,40 @@ const JobPage = () => {
           <Spinner />
         </div>
       )}
-      {jobs
-        ?.sort(handleSorting())
-        .map(
-          ({
-            id,
-            votes,
-            answers,
-            views,
-            title,
-            text,
-            tags,
-            author,
-            created,
-            team
-          }) =>
-            team ? null : answers.length === 0 ? (
-              <QuestionWrapper key={id}>
-                {(() => {
-                  return (
-                    <>
-                      <QuestionStats
-                        voteCount={votes.length}
-                        answerCount={answers.length}
-                        view={views}
-                      />
-                      <QuestionSummary
-                        id={id}
-                        title={title}
-                        tags={tags}
-                        author={author}
-                        createdTime={created}
-                      >
-                        {text}
-                        {/* To set the flag there is a problem */}
-                        {(flag = 0)}
-                      </QuestionSummary>
-                    </>
-                  )
-                })()}
-              </QuestionWrapper>
-            ) : null
-        )}
+      {console.log(jobs)}
+      {jobs?.sort(handleSorting()).map(({ id }) => (
+        <QuestionWrapper key={id}>
+          {(() => {
+            return (
+              <>
+                <h1>{id}</h1>
+                {(flag = 0)}
+              </>
+
+              // <>
+              //   <QuestionStats
+              //     voteCount={votes.length}
+              //     answerCount={answers.length}
+              //     view={views}
+              //   />
+              //   <QuestionSummary
+              //     id={id}
+              //     title={title}
+              //     tags={tags}
+              //     author={author}
+              //     createdTime={created}
+              //   >
+              //     {text}
+              //     {/* To set the flag there is a problem */}
+              //     {(flag = 0)}
+              //   </QuestionSummary>
+              // </>
+            )
+          })()}
+        </QuestionWrapper>
+      ))}
       {flag ? (
-        <QuestionWrapper>Looks Like No Problem for Now!!!</QuestionWrapper>
+        <QuestionWrapper>Looks Like No Jobs for Now!!!</QuestionWrapper>
       ) : null}
     </Layout>
   )
