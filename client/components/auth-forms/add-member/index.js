@@ -22,12 +22,11 @@ const AddForm = () => {
   return (
     <Formik
       initialValues={{ username: '' }}
-      onSubmit={async ({ setStatus, resetForm }) => {
+      onSubmit={async (values, { setStatus, resetForm }) => {
         setLoading(true)
         try {
-          console.log(username, 'username')
           const { data } = await publicFetch.put(
-            `teams/add-member/${href}/${username}`,
+            `teams/add-member/${href}/${values.username}`,
             {
               headers: { Authorization: `Token ${authState.token}` }
             }
@@ -38,10 +37,10 @@ const AddForm = () => {
           setStatus(error.response.data.message)
         }
         setLoading(false)
-        window.location.href = '/teams'
+        window.location.href = `/team/teammembers/${href}`
       }}
       validationSchema={Yup.object({
-        teamname: Yup.string()
+        username: Yup.string()
           .required('Required')
           .max(16, 'Must be at most 16 characters long')
           .matches(/^[a-zA-Z0-9_-]+$/, 'Contains invalid characters')
@@ -59,15 +58,15 @@ const AddForm = () => {
       }) => (
         <form onSubmit={handleSubmit} className={styles.form}>
           <FormInput
-            label="Username"
+            label="username"
             type="text"
             name="username"
             autoComplete="off"
-            value={values.username}
+            value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
-            hasError={touched.username && errors.username}
-            errorMessage={errors.username && errors.username}
+            hasError={touched.name && errors.name}
+            errorMessage={errors.name && errors.name}
           />
           <p className={styles.status}>{status}</p>
           <Button
