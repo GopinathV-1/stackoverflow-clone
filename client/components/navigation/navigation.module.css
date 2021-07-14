@@ -11,10 +11,26 @@
 }
 
 .icon {
-    padding-right:3%;
+    padding-right: 3%;
     line-height: 1.2em;
 }
-.text{
+
+.text {
     padding-right: 25%;
     font-weight: 600;
+}
+
+.workicon {
+    
+    margin: 2%;
+    font-size: small;
+}
+
+.container {
+    display: flex;
+    line-height: 1em;
+}
+
+.worktext {
+    margin-top: 3.5%;
 }
