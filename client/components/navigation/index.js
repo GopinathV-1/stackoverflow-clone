@@ -50,7 +50,7 @@ const Navigation = () => {
           <span className={styles.worktext}>Find A Job</span>
         </>
       </div>
-      <NavItem href="/unanswered" selected={router.pathname == '/unanswered'}>
+      <NavItem href="/jobs" selected={router.pathname == '/jobs'}>
         <span>Jobs</span>
       </NavItem>
 
