@@ -63,6 +63,7 @@ class Job(models.Model):
     location = models.CharField(max_length=100, blank=False)
     link = models.CharField(max_length=100, blank=False)
     description = models.TextField(blank=False)
+    applied_by = models.ManyToManyField(User, related_name="jobs")
 
 
 class Question(models.Model):
