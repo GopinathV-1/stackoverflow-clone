@@ -1,8 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework.utils import field_mapping
 
-from stackoverflow.helper import attach_profile, calculate_expiry
-from stackoverflow.models import Answer, Comment, Question, Tag, Team, Vote
+from stackoverflow.helper import (attach_profile,
+                                  calculate_expiry)
+from stackoverflow.models import (Answer, Comment, Question,
+                                  Tag, Team, Vote, Job)
 
 
 class UserInfoSerializer(serializers.Serializer):
@@ -278,4 +281,10 @@ class TeamCreateSerializer(serializers.ModelSerializer):
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
+        fields = '__all__'
+
+
+class JobSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
         fields = '__all__'

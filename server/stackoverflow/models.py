@@ -54,6 +54,16 @@ class Team(models.Model):
         return (self.members.count())
 
 
+class Job(models.Model):
+    '''Job section for users'''
+
+    name = models.CharField(max_length=150, blank=False)
+    title = models.CharField(max_length=150, blank=False)
+    salary = models.IntegerField(default=10000)
+    location = models.CharField(max_length=100, blank=False)
+    link = models.CharField(max_length=100, blank=False)
+
+
 class Question(models.Model):
 
     '''
