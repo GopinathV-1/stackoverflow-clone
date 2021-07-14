@@ -8,15 +8,16 @@ from rest_framework.views import APIView
 
 from stackoverflow.helper import (attach_profile, calculate_score,
                                   delete_vote_object, went_wrong)
-from stackoverflow.models import Answer, Comment, Question, Tag, Team, Vote, Job
+from stackoverflow.models import (Answer, Comment, Job, Question, Tag, Team,
+                                  Vote)
 from stackoverflow.serializers import (AnswerPostSerializer, AnswerSerializer,
                                        AuthenticateSerializer,
-                                       CommentPostSerializer,
+                                       CommentPostSerializer, JobSerializer,
                                        PrivateQuestionPostSerializer,
                                        QuestionPostSerializer,
                                        QuestionSerializer, SignupSerializer,
                                        TagSerializer, TeamCreateSerializer,
-                                       TeamSerializer, UserInfoSerializer, JobSerializer)
+                                       TeamSerializer, UserInfoSerializer)
 
 
 class Signup(APIView):
@@ -605,6 +606,6 @@ class Jobdetails(APIView):
     '''
 
     def get(self, request):
-        Jobs = Job.objects.all()
+        jobs = Job.objects.all()
         jobs_details = JobSerializer(jobs, many=True)
-        return Response(jobs_detials)
+        return Response(jobs_details)
