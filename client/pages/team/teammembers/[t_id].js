@@ -2,7 +2,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import React, { useContext, useEffect, useState } from 'react'
 import { Spinner } from '../../../components/icons'
-import PageTitle from '../../../components/page-title'
+import PageTitle from '../../../components/teammember-title'
 import TeamLayout from '../../../components/team-layout'
 import UserList from '../../../components/user-list'
 import UserItem from '../../../components/user-list/user-item'
@@ -39,15 +39,8 @@ function TeamPage({ id }) {
         <title>Team - Clone of Stackoverflow</title>
       </Head>
 
-      <PageTitle title="Team Member" borderBottom={false} />
-      <Button
-        className={styles.button}
-        onClick={() => handleComponentVisible(true, 'add member')}
-        >
-        <span className={styles.icon}>
-        </span>
-        <span className={styles.text}>Add member</span>
-      </Button>
+      <PageTitle title="Team Member" button borderBottom={false} />
+     
 
       {!users && (
         <div className="loading">
