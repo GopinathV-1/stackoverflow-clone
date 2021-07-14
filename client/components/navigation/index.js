@@ -8,7 +8,8 @@ import { AuthContext } from '../../store/auth'
 import styles from './navigation.module.css'
 import ModalContext from '../../store/modal'
 import AddIcon from '@material-ui/icons/Add'
-import { Button, Container } from '@material-ui/core'
+import { Button } from '@material-ui/core'
+import WorkOutlineIcon from '@material-ui/icons/WorkOutline'
 
 const Navigation = () => {
   const router = useRouter()
@@ -41,6 +42,17 @@ const Navigation = () => {
         <span>Unanswered</span>
       </NavItem>
       <br />
+      <div className={styles.container}>
+        <>
+          <span className={styles.workicon}>
+            <WorkOutlineIcon />
+          </span>
+          <span className={styles.worktext}>Find A Job</span>
+        </>
+      </div>
+      <NavItem href="/unanswered" selected={router.pathname == '/unanswered'}>
+        <span>Jobs</span>
+      </NavItem>
 
       {isAuthenticated() ? (
         <>
