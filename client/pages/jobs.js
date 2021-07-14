@@ -55,7 +55,7 @@ const JobPage = () => {
   }
 
   return (
-    <Layout>
+    <Layout extra={false}>
       <Head>
         <title>
           {router.query.tag ? router.query.tag : 'Questions'} - Clone of
