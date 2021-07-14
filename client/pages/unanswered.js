@@ -97,7 +97,7 @@ const UnAnsweredPage = () => {
             created,
             team
           }) =>
-            team ? null : (
+            team ? null : answers.length === 0 ? (
               <QuestionWrapper key={id}>
                 {(() => {
                   return (
@@ -122,7 +122,7 @@ const UnAnsweredPage = () => {
                   )
                 })()}
               </QuestionWrapper>
-            )
+            ) : null
         )}
       {flag ? (
         <QuestionWrapper>Looks Like No Problem for Now!!!</QuestionWrapper>

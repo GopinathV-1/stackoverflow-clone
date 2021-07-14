@@ -584,3 +584,16 @@ class Teamdetails(APIView):
         team = Team.objects.filter(id=team_id)
         team_details = TeamSerializer(team, many=True)
         return Response(team_details.data)
+
+
+class AddTeamMember(APIView):
+    '''
+    Add team member by team id and username
+    '''
+
+    def put(self, request, team_id, username):
+        team = Team.objects.filter(id=team_id)
+        member = User.objects.filter(username=username).first().id
+        team[0].members.add(member)
+        team_detail = TeamSerializer(team, many=True)
+        return Response(team_detail.data)
