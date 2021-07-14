@@ -1,0 +1,20 @@
+.nav {
+  top: 74px;
+  position: sticky;
+  width: auto;
+  cursor: pointer;
+}
+
+.button {
+  justify-content: space-around;
+  width: 100%;
+}
+
+.icon {
+  padding-right: 3%;
+  line-height: 1.2em;
+}
+.text {
+  padding-right: 25%;
+  font-weight: 600;
+}
