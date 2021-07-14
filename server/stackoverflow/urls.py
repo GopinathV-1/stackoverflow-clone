@@ -96,5 +96,9 @@ urlpatterns = [
     path(
         'api/team-detail/<int:team_id>',
         views.Teamdetails.as_view()
+    ),
+    path(
+        'api/teams/add-member/<int:team_id>/<str:username>',
+        views.AddTeamMember.as_view()
     )
 ]
