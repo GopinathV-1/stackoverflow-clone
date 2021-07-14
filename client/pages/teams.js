@@ -13,12 +13,18 @@ import { AuthContext } from '../store/auth'
 import TeamList from '../components/team-list'
 import TeamItem from '../components/team-list/team-item'
 
+import Button from '../components/button'
+import AddIcon from '@material-ui/icons/Add'
+
+import ModalContext from '../store/modal'
+
 const Teams = () => {
   const [team, setteam] = useState(null)
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState(null)
   const router = useRouter()
   const { authState } = useContext(AuthContext)
+  const { handleComponentVisible } = useContext(ModalContext)
 
   useEffect(() => {
     {
@@ -71,7 +77,16 @@ const Teams = () => {
           </TeamList>
 
           {team.length == 0 && (
-            <p className="not-found">No team matched your search.</p>
+            <div className="not-Found-Conatiner">
+              <p className="not-found-team">"Create Your Own Team" </p>
+              <Button
+                onClick={() => handleComponentVisible(true, 'create team')}
+                className="create-team-button"
+                primary
+              >
+                <span className="not-found-text">Create Team</span>
+              </Button>
+            </div>
           )}
         </>
       )}
