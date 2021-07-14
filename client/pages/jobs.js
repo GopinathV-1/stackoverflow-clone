@@ -15,28 +15,19 @@ import { Spinner } from '../components/icons'
 const JobPage = () => {
   const router = useRouter()
 
-  const [questions, setQuestions] = useState(null)
+  const [jobs, setJobs] = useState(null)
   const [sortType, setSortType] = useState('Votes')
 
   //  let there is no problem
   let flag = 1
 
   useEffect(() => {
-    const fetchQuestion = async () => {
-      const { data } = await publicFetch.get('/question')
-      setQuestions(data)
+    const fetchJob = async () => {
+      const { data } = await publicFetch.get('/jobs')
+      setJobs(data)
     }
 
-    const fetchQuestionByTag = async () => {
-      const { data } = await publicFetch.get(`/questions/${router.query.tag}`)
-      setQuestions(data)
-    }
-
-    if (router.query.tag) {
-      fetchQuestionByTag()
-    } else {
-      fetchQuestion()
-    }
+    fetchJob()
   }, [router.query.tag])
 
   const handleSorting = () => {
@@ -74,12 +65,12 @@ const JobPage = () => {
         selected={sortType}
         setSelected={setSortType}
       />
-      {!questions && (
+      {!jobs && (
         <div className="loading">
           <Spinner />
         </div>
       )}
-      {questions
+      {jobs
         ?.sort(handleSorting())
         .map(
           ({
