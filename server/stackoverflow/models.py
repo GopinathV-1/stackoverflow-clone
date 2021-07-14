@@ -62,6 +62,7 @@ class Job(models.Model):
     salary = models.IntegerField(default=10000)
     location = models.CharField(max_length=100, blank=False)
     link = models.CharField(max_length=100, blank=False)
+    description = models.TextField(blank=False)
 
 
 class Question(models.Model):
