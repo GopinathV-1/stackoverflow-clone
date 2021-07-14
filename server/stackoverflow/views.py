@@ -608,4 +608,4 @@ class Jobdetails(APIView):
     def get(self, request):
         jobs = Job.objects.all()
         jobs_details = JobSerializer(jobs, many=True)
-        return Response(jobs_details)
+        return Response(jobs_details.data)
