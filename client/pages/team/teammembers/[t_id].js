@@ -8,8 +8,12 @@ import UserList from '../../../components/user-list'
 import UserItem from '../../../components/user-list/user-item'
 import { AuthContext } from '../../../store/auth'
 import { useRouter } from 'next/router'
+import styles from './team.module.css'
+import ModalContext from '../../../store/modal'
+import { Button } from '@material-ui/core'
 
 function TeamPage({ id }) {
+  const { handleComponentVisible } = useContext(ModalContext)
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(false)
   const { authState } = useContext(AuthContext)
@@ -36,6 +40,14 @@ function TeamPage({ id }) {
       </Head>
 
       <PageTitle title="Team Member" borderBottom={false} />
+      <Button
+        className={styles.button}
+        onClick={() => handleComponentVisible(true, 'add member')}
+        >
+        <span className={styles.icon}>
+        </span>
+        <span className={styles.text}>Add member</span>
+      </Button>
 
       {!users && (
         <div className="loading">

@@ -7,18 +7,18 @@ import SignUpForm from './signup-form'
 
 import styles from './auth-forms.module.css'
 import CreateForm from './team-form'
-
+import AddForm from './add-member'
 const AuthForms = ({ screen = 'signup' }) => {
   const [form, setForm] = useState(screen)
 
   return (
     <div className={styles.authModal}>
       <Head>
-        <title>{form == 'create team' ? 'Team': form == 'login'? 'Log In' : 'Sign Up'} - Clone of Stackoverflow</title>
+        <title>{form == 'add member' ? 'Member' : form == 'create team' ? 'Team': form == 'login'? 'Log In' : 'Sign Up'} - Clone of Stackoverflow</title>
       </Head>
 
       <Logo className={styles.logo} />
-      {form === 'create team' ? <CreateForm/> : form === 'login' ? <LoginForm /> : <SignUpForm />}
+      {form === 'add member' ? <AddForm/> :form === 'create team' ? <CreateForm/> : form === 'login' ? <LoginForm /> : <SignUpForm />}
 
       {form === 'login' ? (
         <p className={styles.authSwichMessage}>
