@@ -17,16 +17,21 @@ const AddForm = () => {
   const { setIsComponentVisible } = useContext(ModalContext)
   const { authState } = useContext(AuthContext)
   const [loading, setLoading] = useState(false)
-  let history = useHistory()
+  let href = window.location.href.split('/')[5]
+  console.log(href)
   return (
     <Formik
       initialValues={{ username: '' }}
-      onSubmit={async (values, { setStatus, resetForm }) => {
+      onSubmit={async ({ setStatus, resetForm }) => {
         setLoading(true)
         try {
-          const { data } = await publicFetch.post('teams/addmember/', values, {
-            headers: { Authorization: `Token ${authState.token}` }
-          })
+          console.log(username, 'username')
+          const { data } = await publicFetch.put(
+            `teams/add-member/${href}/${username}`,
+            {
+              headers: { Authorization: `Token ${authState.token}` }
+            }
+          )
           resetForm({})
           setIsComponentVisible(true)
         } catch (error) {
@@ -56,7 +61,7 @@ const AddForm = () => {
           <FormInput
             label="Username"
             type="text"
-            name="teamname"
+            name="username"
             autoComplete="off"
             value={values.username}
             onChange={handleChange}
