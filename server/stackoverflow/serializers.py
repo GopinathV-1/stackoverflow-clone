@@ -1,11 +1,9 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from rest_framework.utils import field_mapping
 
-from stackoverflow.helper import (attach_profile,
-                                  calculate_expiry)
-from stackoverflow.models import (Answer, Comment, Question,
-                                  Tag, Team, Vote, Job)
+from stackoverflow.helper import attach_profile, calculate_expiry
+from stackoverflow.models import (Answer, Comment, Job, Question, Tag, Team,
+                                  Vote)
 
 
 class UserInfoSerializer(serializers.Serializer):
