@@ -92,27 +92,39 @@ const JobPage = () => {
       {console.log(jobs)}
       {jobs
         ?.sort(handleSorting())
-        .map(({ id, name, title, location, link, description, created }) => (
-          <JobWrapper key={id}>
-            {(() => {
-              flag = 0
-              return (
-                <>
-                  <JobSummary
-                    id={id}
-                    name={name}
-                    title={title}
-                    location={location}
-                    link={link}
-                    createdTime={created}
-                  >
-                    {/* To set the flag there is a problem */}
-                  </JobSummary>
-                </>
-              )
-            })()}
-          </JobWrapper>
-        ))}
+        .map(
+          ({
+            id,
+            name,
+            title,
+            location,
+            link,
+            description,
+            technologies,
+            created
+          }) => (
+            <JobWrapper key={id}>
+              {(() => {
+                flag = 0
+                return (
+                  <>
+                    <JobSummary
+                      id={id}
+                      name={name}
+                      title={title}
+                      location={location}
+                      link={link}
+                      createdTime={created}
+                      technologies={technologies}
+                    >
+                      {/* To set the flag there is a problem */}
+                    </JobSummary>
+                  </>
+                )
+              })()}
+            </JobWrapper>
+          )
+        )}
       {flag ? (
         <QuestionWrapper>Looks Like No Jobs for Now!!!</QuestionWrapper>
       ) : null}

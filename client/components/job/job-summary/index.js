@@ -8,7 +8,16 @@ import Tag from '../../tag'
 import styles from './job-summary.module.css'
 import Button from '../../button'
 
-const JobSummary = ({ id, name, title, location, salary, link, children }) => {
+const JobSummary = ({
+  id,
+  name,
+  title,
+  location,
+  salary,
+  link,
+  technologies,
+  children
+}) => {
   return (
     <div className={styles.container}>
       <Link href="/jobs/[slug]" as={`/jobs/${id}`}>
@@ -24,6 +33,13 @@ const JobSummary = ({ id, name, title, location, salary, link, children }) => {
           <Button href={link} primary target="_blank">
             {name}
           </Button>
+          <div className={styles.tagContainer}>
+            {technologies.map((tag) => (
+              <div className={styles.tag} key={tag}>
+                {tag}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
