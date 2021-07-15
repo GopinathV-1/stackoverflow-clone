@@ -24,15 +24,12 @@ const JobView = ({
 }) => {
   const { isAuthenticated, authState } = useContext(AuthContext)
 
-  console.log(description)
-
   const applyJob = () => {
     const { data } = Axios.put(
       `http://127.0.0.1:8000/api/jobs/applied-by/${id}/${authState.userInfo.id}`
     )
     window.location.href = `/jobs/${id}`
   }
-  console.log('applied by', applied_by)
   return (
     <>
       <div className={styles.container}>

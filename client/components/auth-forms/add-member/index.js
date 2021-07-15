@@ -18,7 +18,6 @@ const AddForm = () => {
   const { authState } = useContext(AuthContext)
   const [loading, setLoading] = useState(false)
   let href = window.location.href.split('/')[5]
-  console.log(href)
   return (
     <Formik
       initialValues={{ username: '' }}

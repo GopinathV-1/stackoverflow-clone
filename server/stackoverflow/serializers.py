@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from stackoverflow.helper import attach_profile, calculate_expiry
 from stackoverflow.models import (Answer, Comment, Job, Question, Tag, Team,
-                                  Technologies, Vote)
+                                  Vote)
 
 
 class UserInfoSerializer(serializers.Serializer):
@@ -268,7 +268,6 @@ class TeamCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        print("-----------------create---------------")
         member_of_team = validated_data.pop('members')
         teams = Team.objects.create(**validated_data)
         for member in member_of_team:

@@ -89,7 +89,6 @@ const JobPage = () => {
           <Spinner />
         </div>
       )}
-      {console.log(jobs)}
       {jobs
         ?.sort(handleSorting())
         .map(

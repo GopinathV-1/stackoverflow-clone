@@ -18,12 +18,10 @@ import { Button } from '@material-ui/core'
 const JobDetail = ({ JobId }) => {
   const [job, setJob] = useState(null)
   const [answerSortType, setAnswersSortType] = useState('Votes')
-  console.log(JobId)
   useEffect(() => {
     const fetchJob = async () => {
       const { data } = await publicFetch.get(`/jobs/${JobId}`)
       setJob(data)
-      console.log(data, 'data hai')
     }
 
     fetchJob()
@@ -84,7 +82,6 @@ const JobDetail = ({ JobId }) => {
 }
 
 export async function getServerSideProps(context) {
-  console.log(context)
   const slug = context.params.slug
   const JobId = slug
 

@@ -31,7 +31,6 @@ function TeamPage({ id }) {
       fetchUser()
     }
   }, [authState.token])
-  console.log(users)
 
   return (
     <TeamLayout extra={false} t_id={id}>
