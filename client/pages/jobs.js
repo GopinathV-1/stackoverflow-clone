@@ -88,9 +88,7 @@ const JobPage = () => {
                     location={location}
                     link={link}
                   >
-                    {description}
                     {/* To set the flag there is a problem */}
-                    {(flag = 0)}
                   </JobSummary>
                 </>
               )
