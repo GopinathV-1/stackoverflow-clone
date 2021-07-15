@@ -1,11 +1,11 @@
 .paragraph {
+  margin-top: 2%;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 16px;
   background-color: #f0eee7;
 }
 
-.container {
-}
+
 
 .link {
   display: block;
@@ -42,9 +42,11 @@
 .location {
   font-weight: 600;
 }
+
 .topic {
   font-size: 18px;
 }
+
 .btnapply {
   margin: 2%;
 }
@@ -70,4 +72,27 @@
       width: min-content;
     }
   }
+}
+
+.aboutcontainer {
+  margin: 2% 0%;
+
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.details {
+  text-transform: capitalize;
+  margin: 2% 0%;
+  font-size: 15px;
+}
+.bold{
+  font-weight: 600;
+}
+.floatcontainer {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
 }

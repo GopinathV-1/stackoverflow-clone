@@ -18,9 +18,13 @@ const JobView = ({
   link,
   description,
   children,
+  role,
+  indstry,
   applied_by
 }) => {
   const { isAuthenticated, authState } = useContext(AuthContext)
+
+  console.log(description)
 
   const applyJob = () => {
     const { data } = Axios.put(
@@ -62,10 +66,31 @@ const JobView = ({
           ) : null}
         </div>
       </div>
-      <h2 className={styles.topic}>Job description</h2>
-      <div className={styles.container}>
-        <p className={styles.paragraph}>{description}</p>
+      <div className={styles.aboutcontainer}>
+        <h1 className={styles.heading}>About This Job</h1>
+        <span className={styles.floatcontainer}>
+          <h2 className={styles.details}>
+            <span className={styles.bold}>Job Type</span>: Full Time
+          </h2>
+          <h2 className={styles.details}>
+            <span className={styles.bold}>Company Type</span>: {indstry}
+          </h2>
+        </span>
+        <span className={styles.floatcontainer}>
+          <h2 className={styles.details}>
+            <span className={styles.bold}>Role</span>: {role}
+          </h2>
+          <h2 className={styles.details}>
+            <span className={styles.bold}>Location: </span>
+            {location}
+          </h2>
+        </span>
+        <h2 className={styles.details}>
+          <span className={styles.bold}>Salary</span>: {salary}
+        </h2>
       </div>
+      <h2 className={styles.heading}>Job description</h2>
+      <div className={styles.container}>{description}</div>
     </div>
   )
 }

@@ -51,7 +51,9 @@ const JobDetail = ({ JobId }) => {
           link,
           salary,
           description,
-          applied_by
+          applied_by,
+          role,
+          indstry
         }) => (
           <>
             <JobWrapper key={id}>
@@ -67,6 +69,8 @@ const JobDetail = ({ JobId }) => {
                       link={link}
                       description={description}
                       applied_by={applied_by}
+                      role={role}
+                      indstry={indstry}
                     ></JobView>
                   </>
                 )
