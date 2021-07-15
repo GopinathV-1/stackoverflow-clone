@@ -102,5 +102,6 @@ urlpatterns = [
         views.AddTeamMember.as_view()
     ),
     # Jobs
-    path('api/jobs', views.Jobdetails.as_view())
+    path('api/jobs', views.JobList.as_view()),
+    path('api/jobs/<int:job_id>', views.JobDetail.as_view())
 ]

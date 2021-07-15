@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { publicFetch } from '../util/fetcher'
+import Link from 'next/link'
 
 import Layout from '../components/layout'
 import QuestionWrapper from '../components/question/question-wrapper'
@@ -71,12 +72,15 @@ const JobPage = () => {
         </div>
       )}
       {console.log(jobs)}
-      {jobs?.sort(handleSorting()).map(({ id }) => (
+      {jobs?.sort(handleSorting()).map(({ id, title }) => (
         <QuestionWrapper key={id}>
           {(() => {
             return (
               <>
                 <h1>{id}</h1>
+                <Link href="/jobs/[slug]" as={`/jobs/${id}`}>
+                  <a>{title}</a>
+                </Link>
                 {(flag = 0)}
               </>
 

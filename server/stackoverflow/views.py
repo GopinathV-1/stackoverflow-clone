@@ -600,7 +600,7 @@ class AddTeamMember(APIView):
         return Response(team_detail.data)
 
 
-class Jobdetails(APIView):
+class JobList(APIView):
     '''
     To render all the jobs
     '''
@@ -609,3 +609,14 @@ class Jobdetails(APIView):
         jobs = Job.objects.all()
         jobs_details = JobSerializer(jobs, many=True)
         return Response(jobs_details.data)
+
+
+class JobDetail(APIView):
+    '''
+    To return job by job id
+    '''
+
+    def get(self, request, job_id):
+        job = Job.objects.filter(id=job_id)
+        job_detail = JobSerializer(job, many=True)
+        return Response(job_detail.data)
