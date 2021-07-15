@@ -7,7 +7,7 @@ import PageTitle from '../../components/page-title'
 import DetailPageContainer from '../../components/detail-page-container'
 import JobWrapper from '../../components/job/job-wrapper'
 import PostVote from '../../components/post/post-vote'
-import JobSummary from '../../components/job/job-summary'
+import JobView from '../../components/job/job-view'
 import CommentList from '../../components/post/comment-list'
 import CommentItem from '../../components/post/comment-list/comment-item'
 import AnswerContainer from '../../components/answer-container'
@@ -22,7 +22,7 @@ const JobDetail = ({ JobId }) => {
     const fetchJob = async () => {
       const { data } = await publicFetch.get(`/jobs/${JobId}`)
       setJob(data)
-      console.log(data,'data hai')
+      console.log(data, 'data hai')
     }
 
     fetchJob()
@@ -46,16 +46,15 @@ const JobDetail = ({ JobId }) => {
           {(() => {
             return (
               <>
-                <JobSummary
+                <JobView
                   salary={salary}
                   id={id}
                   name={name}
                   title={title}
                   location={location}
                   link={link}
-                >
-                  {description}
-                </JobSummary>
+                  description={description}
+                ></JobView>
               </>
             )
           })()}
