@@ -20,13 +20,13 @@ const JobView = ({
   children,
   applied_by
 }) => {
-  const { authState } = useContext(AuthContext)
+  const { isAuthenticated, authState } = useContext(AuthContext)
   const u_id = authState.userInfo.id
   const applyJob = () => {
     const { data } = Axios.put(
       `http://127.0.0.1:8000/api/jobs/applied-by/${id}/${u_id}`
     )
-    window.location.href = '/jobs'
+    window.location.href = `/jobs/${id}`
   }
   console.log('applied by', applied_by)
   return (
@@ -44,15 +44,22 @@ const JobView = ({
           <Button href={link} primary target="_blank">
             {name}
           </Button>
-          {applied_by.includes({ u_id }) ? (
-            <Button
-              onClick={applyJob}
-              primary
-              target="_blank"
-              className={styles.btnapply}
-            >
-              Apply
-            </Button>
+
+          {isAuthenticated() ? (
+            applied_by.includes(u_id) ? (
+              <Button className={styles.btnapply} secondary>
+                Already Applied
+              </Button>
+            ) : (
+              <Button
+                onClick={applyJob}
+                primary
+                target="_blank"
+                className={styles.btnapply}
+              >
+                Apply
+              </Button>
+            )
           ) : null}
         </div>
       </div>
