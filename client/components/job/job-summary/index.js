@@ -8,15 +8,7 @@ import Tag from '../../tag'
 import styles from './job-summary.module.css'
 import Button from '../../button'
 
-const JobSummary = ({
-  id,
-  name,
-  title,
-  location,
-  link,
-  description,
-  children
-}) => {
+const JobSummary = ({ id, name, title, location, link, children }) => {
   return (
     <div className={styles.container}>
       <Link href="/jobs/[slug]" as={`/jobs/${id}`}>

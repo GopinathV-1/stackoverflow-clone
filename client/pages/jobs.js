@@ -84,7 +84,6 @@ const JobPage = () => {
                     id={id}
                     name={name}
                     title={title}
-                    description={description}
                     location={location}
                     link={link}
                   >
