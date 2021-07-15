@@ -42,27 +42,39 @@ const JobDetail = ({ JobId }) => {
           <Spinner />
         </div>
       )}
-      {job?.map(({ id, name, title, location, link, salary, description }) => (
-        <>
-          <JobWrapper key={id}>
-            {(() => {
-              return (
-                <>
-                  <JobView
-                    salary={salary}
-                    id={id}
-                    name={name}
-                    title={title}
-                    location={location}
-                    link={link}
-                    description={description}
-                  ></JobView>
-                </>
-              )
-            })()}
-          </JobWrapper>
-        </>
-      ))}
+      {job?.map(
+        ({
+          id,
+          name,
+          title,
+          location,
+          link,
+          salary,
+          description,
+          applied_by
+        }) => (
+          <>
+            <JobWrapper key={id}>
+              {(() => {
+                return (
+                  <>
+                    <JobView
+                      salary={salary}
+                      id={id}
+                      name={name}
+                      title={title}
+                      location={location}
+                      link={link}
+                      description={description}
+                      applied_by={applied_by}
+                    ></JobView>
+                  </>
+                )
+              })()}
+            </JobWrapper>
+          </>
+        )
+      )}
     </Layout>
   )
 }
