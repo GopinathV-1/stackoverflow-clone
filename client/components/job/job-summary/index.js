@@ -7,6 +7,7 @@ import Tag from '../../tag'
 
 import styles from './job-summary.module.css'
 import Button from '../../button'
+import LaunchIcon from '@material-ui/icons/Launch'
 
 const JobSummary = ({
   id,
@@ -31,7 +32,10 @@ const JobSummary = ({
       <div className={styles.footer}>
         <div className={styles.tagContainer}>
           <Button href={link} primary target="_blank">
-            Visit Company
+            <span>Visit Company</span>
+            <span className={styles.launchIcon}>
+              <LaunchIcon />
+            </span>
           </Button>
           <div className={styles.tagContainer}>
             {technologies.map((tag) => (

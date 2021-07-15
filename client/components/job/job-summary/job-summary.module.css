@@ -2,7 +2,6 @@
     margin-left: 1%;
     flex: 1 auto;
     overflow: hidden;
-    
 }
 
 .link {
@@ -39,6 +38,10 @@
 
 .location {
     font-weight: 600;
+}
+
+.launchIcon {
+    margin-top: 5%;
 }
 
 .userDetails {
