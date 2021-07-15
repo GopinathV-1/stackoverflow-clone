@@ -38,6 +38,11 @@ const JobView = ({
       <div className={styles.container}>
         <p>{description}</p>
       </div>
+      <div>
+        <Button href={link} primary target="_blank">
+          Apply
+        </Button>
+      </div>
     </div>
   )
 }
