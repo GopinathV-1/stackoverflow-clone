@@ -37,6 +37,9 @@
 .location {
   font-weight: 600;
 }
+.btnapply{
+  margin: 2%;
+}
 
 .userDetails {
   display: flex;

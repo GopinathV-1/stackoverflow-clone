@@ -33,15 +33,18 @@ const JobView = ({
           <Button href={link} primary target="_blank">
             {name}
           </Button>
+          <Button
+            href={link}
+            primary
+            target="_blank"
+            className={styles.btnapply}
+          >
+            Apply
+          </Button>
         </div>
       </div>
       <div className={styles.container}>
         <p>{description}</p>
-      </div>
-      <div>
-        <Button href={link} primary target="_blank">
-          Apply
-        </Button>
       </div>
     </div>
   )

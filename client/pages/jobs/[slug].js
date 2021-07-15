@@ -13,6 +13,7 @@ import CommentItem from '../../components/post/comment-list/comment-item'
 import AnswerContainer from '../../components/answer-container'
 import AddAnswer from '../../components/add-answer'
 import { Spinner } from '../../components/icons'
+import { Button } from '@material-ui/core'
 
 const JobDetail = ({ JobId }) => {
   const [job, setJob] = useState(null)
@@ -42,23 +43,25 @@ const JobDetail = ({ JobId }) => {
         </div>
       )}
       {job?.map(({ id, name, title, location, link, salary, description }) => (
-        <JobWrapper key={id}>
-          {(() => {
-            return (
-              <>
-                <JobView
-                  salary={salary}
-                  id={id}
-                  name={name}
-                  title={title}
-                  location={location}
-                  link={link}
-                  description={description}
-                ></JobView>
-              </>
-            )
-          })()}
-        </JobWrapper>
+        <>
+          <JobWrapper key={id}>
+            {(() => {
+              return (
+                <>
+                  <JobView
+                    salary={salary}
+                    id={id}
+                    name={name}
+                    title={title}
+                    location={location}
+                    link={link}
+                    description={description}
+                  ></JobView>
+                </>
+              )
+            })()}
+          </JobWrapper>
+        </>
       ))}
     </Layout>
   )
