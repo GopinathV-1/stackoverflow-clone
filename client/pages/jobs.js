@@ -12,6 +12,8 @@ import QuestionSummary from '../components/question/question-summary'
 import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
+import JobWrapper from '../components/job/job-wrapper'
+import JobSummary from '../components/job/job-summary'
 
 const JobPage = () => {
   const router = useRouter()
@@ -72,40 +74,29 @@ const JobPage = () => {
         </div>
       )}
       {console.log(jobs)}
-      {jobs?.sort(handleSorting()).map(({ id, title }) => (
-        <QuestionWrapper key={id}>
-          {(() => {
-            return (
-              <>
-                <h1>{id}</h1>
-                <Link href="/jobs/[slug]" as={`/jobs/${id}`}>
-                  <a>{title}</a>
-                </Link>
-                {(flag = 0)}
-              </>
-
-              // <>
-              //   <QuestionStats
-              //     voteCount={votes.length}
-              //     answerCount={answers.length}
-              //     view={views}
-              //   />
-              //   <QuestionSummary
-              //     id={id}
-              //     title={title}
-              //     tags={tags}
-              //     author={author}
-              //     createdTime={created}
-              //   >
-              //     {text}
-              //     {/* To set the flag there is a problem */}
-              //     {(flag = 0)}
-              //   </QuestionSummary>
-              // </>
-            )
-          })()}
-        </QuestionWrapper>
-      ))}
+      {jobs
+        ?.sort(handleSorting())
+        .map(({ id, name, title, location, link, description }) => (
+          <JobWrapper key={id}>
+            {(() => {
+              return (
+                <>
+                  <JobSummary
+                    id={id}
+                    name={name}
+                    title={title}
+                    location={location}
+                    link={link}
+                  >
+                    {description}
+                    {/* To set the flag there is a problem */}
+                    {(flag = 0)}
+                  </JobSummary>
+                </>
+              )
+            })()}
+          </JobWrapper>
+        ))}
       {flag ? (
         <QuestionWrapper>Looks Like No Jobs for Now!!!</QuestionWrapper>
       ) : null}
