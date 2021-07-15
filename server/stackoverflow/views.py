@@ -117,7 +117,7 @@ class QuestionView(generics.ListCreateAPIView):
 
 
 class QuestionSearch(APIView):
-    '''Api view for user searching'''
+    '''Api view for question searching'''
 
     def get(self, request, title):
         '''method to handle get requests'''
@@ -609,3 +609,17 @@ class Jobdetails(APIView):
         jobs = Job.objects.all()
         jobs_details = JobSerializer(jobs, many=True)
         return Response(jobs_details.data)
+
+
+class JobSearch(APIView):
+    '''Api view for job searching'''
+
+    def get(self, request, title):
+        '''method to handle get requests'''
+
+        # querying users and attach profile to convert required format
+        jobs = Job.objects.filter(title__icontains=title)
+
+        # serializing data
+        serializer = JobSerializer(jobs, many=True)
+        return Response(serializer.data)

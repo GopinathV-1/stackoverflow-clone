@@ -11,24 +11,39 @@ import QuestionSummary from '../components/question/question-summary'
 import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
+import SearchInput from '../components/search-input'
 
 const JobPage = () => {
   const router = useRouter()
 
   const [jobs, setJobs] = useState(null)
   const [sortType, setSortType] = useState('Votes')
+  const [searchTerm, setSearchTerm] = useState(null)
+  const [loading, setLoading] = useState(false)
+
 
   //  let there is no problem
   let flag = 1
 
   useEffect(() => {
-    const fetchJob = async () => {
-      const { data } = await publicFetch.get('/jobs')
-      setJobs(data)
-    }
-
-    fetchJob()
-  }, [router.query.tag])
+    if (searchTerm === null || searchTerm === '') {
+      const fetchJob = async () => {
+        const { data } = await publicFetch.get('/jobs')
+        setJobs(data)
+      }
+      fetchJob()
+      } else {
+        const delayDebounceFn = setTimeout(async () => {
+          setLoading(true)
+          const { data } = await publicFetch.get(
+            searchTerm ? `/jobs/${searchTerm}` : `/title`
+          )
+          setJobs(data)
+          setLoading(false)
+        }, 500)
+        return () => clearTimeout(delayDebounceFn)
+      }
+  }, [router.query.tag, searchTerm])
 
   const handleSorting = () => {
     switch (sortType) {
@@ -59,6 +74,14 @@ const JobPage = () => {
         }
         borderBottom={false}
       />
+      <SearchInput
+        placeholder="Search by job title"
+        isLoading={loading}
+        autoFocus
+        autoComplete="off"
+        type="text"
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <ButtonGroup
         borderBottom
         buttons={['Views', 'Newest', 'Oldest']}
@@ -76,8 +99,8 @@ const JobPage = () => {
           {(() => {
             return (
               <>
-                <h1>{id}</h1>
-                {(flag = 0)}
+                <h1>{jobs[id-1].title}</h1>
+                <h2>{id}</h2>
               </>
 
               // <>
