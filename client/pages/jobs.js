@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { publicFetch } from '../util/fetcher'
+import Link from 'next/link'
 
 import Layout from '../components/layout'
 import QuestionWrapper from '../components/question/question-wrapper'
@@ -12,6 +13,8 @@ import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
 import SearchInput from '../components/search-input'
+import JobWrapper from '../components/job/job-wrapper'
+import JobSummary from '../components/job/job-summary'
 
 const JobPage = () => {
   const router = useRouter()
@@ -94,37 +97,29 @@ const JobPage = () => {
         </div>
       )}
       {console.log(jobs)}
-      {jobs?.sort(handleSorting()).map(({ id }) => (
-        <QuestionWrapper key={id}>
-          {(() => {
-            return (
-              <>
-                <h1>{jobs[id-1].title}</h1>
-                <h2>{id}</h2>
-              </>
-
-              // <>
-              //   <QuestionStats
-              //     voteCount={votes.length}
-              //     answerCount={answers.length}
-              //     view={views}
-              //   />
-              //   <QuestionSummary
-              //     id={id}
-              //     title={title}
-              //     tags={tags}
-              //     author={author}
-              //     createdTime={created}
-              //   >
-              //     {text}
-              //     {/* To set the flag there is a problem */}
-              //     {(flag = 0)}
-              //   </QuestionSummary>
-              // </>
-            )
-          })()}
-        </QuestionWrapper>
-      ))}
+      {jobs
+        ?.sort(handleSorting())
+        .map(({ id, name, title, location, link, description }) => (
+          <JobWrapper key={id}>
+            {(() => {
+              return (
+                <>
+                  <JobSummary
+                    id={id}
+                    name={name}
+                    title={title}
+                    location={location}
+                    link={link}
+                  >
+                    {description}
+                    {/* To set the flag there is a problem */}
+                    {(flag = 0)}
+                  </JobSummary>
+                </>
+              )
+            })()}
+          </JobWrapper>
+        ))}
       {flag ? (
         <QuestionWrapper>Looks Like No Jobs for Now!!!</QuestionWrapper>
       ) : null}
