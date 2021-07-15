@@ -635,3 +635,16 @@ class JobDetail(APIView):
         print('*******', job)
         job_detail = JobSerializer(job, many=True)
         return Response(job_detail.data)
+
+
+class AddAppliedBy(APIView):
+    '''
+    Add user who applied for job
+    '''
+
+    def put(self, request, job_id, username):
+        job = Job.objects.filter(id=job_id)
+        user = User.objects.filter(username=username).first().id
+        job[0].applied_by.add(user)
+        job_appleied = JobSerializer(job, many=True)
+        return Response(job_appleied.data)

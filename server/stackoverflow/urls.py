@@ -104,5 +104,10 @@ urlpatterns = [
     # Jobs
     path('api/jobs/search/<str:title>', views.JobSearch.as_view()),
     path('api/jobs', views.JobList.as_view()),
-    path('api/jobs/<int:job_id>', views.JobDetail.as_view())
+    path('api/jobs/<int:job_id>', views.JobDetail.as_view()),
+    path(
+        'api/jobs/applied-by/<int:job_id>/<str:username>',
+        views.AddAppliedBy.as_view()
+    )
+
 ]
