@@ -282,10 +282,22 @@ class TeamSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class TechnologyListSerializer(serializers.ModelSerializer):
+    '''To only get only the names
+    of Technology
+    '''
+
+    def to_representation(self, value):
+        '''
+        returns the name in
+        form of list
+        '''
+        return value.name
+
+
 class JobSerializer(serializers.ModelSerializer):
 
-    technologies = Technologies()
-
+    technologies = TechnologyListSerializer(many=True, read_only=True)
 
     class Meta:
         model = Job
