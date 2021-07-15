@@ -56,8 +56,9 @@ const JobView = ({
           ) : null}
         </div>
       </div>
+      <h2 className={styles.topic}>Job description</h2>
       <div className={styles.container}>
-        <p>{description}</p>
+        <p className={styles.paragraph}>{description}</p>
       </div>
     </div>
   )
