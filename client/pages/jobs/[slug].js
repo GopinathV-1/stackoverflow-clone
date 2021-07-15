@@ -22,7 +22,7 @@ const JobDetail = ({ JobId }) => {
     const fetchJob = async () => {
       const { data } = await publicFetch.get(`/jobs/${JobId}`)
       setJob(data)
-      console.log(data,'data hai')
+      console.log(data, 'data hai')
     }
 
     fetchJob()
