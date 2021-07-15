@@ -105,9 +105,7 @@ const JobPage = () => {
                     link={link}
                     createdTime={created}
                   >
-                    {description}
                     {/* To set the flag there is a problem */}
-                    {(flag = 0)}
                   </JobSummary>
                 </>
               )
