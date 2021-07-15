@@ -22,7 +22,6 @@ const JobPage = () => {
   const [searchTerm, setSearchTerm] = useState(null)
   const [loading, setLoading] = useState(false)
 
-
   //  let there is no problem
   let flag = 1
 
@@ -33,25 +32,21 @@ const JobPage = () => {
         setJobs(data)
       }
       fetchJob()
-      } else {
-        const delayDebounceFn = setTimeout(async () => {
-          setLoading(true)
-          const { data } = await publicFetch.get(
-            searchTerm ? `/jobs/${searchTerm}` : `/title`
-          )
-          setJobs(data)
-          setLoading(false)
-        }, 500)
-        return () => clearTimeout(delayDebounceFn)
-      }
+    } else {
+      const delayDebounceFn = setTimeout(async () => {
+        setLoading(true)
+        const { data } = await publicFetch.get(
+          searchTerm ? `/jobs/${searchTerm}` : `/title`
+        )
+        setJobs(data)
+        setLoading(false)
+      }, 500)
+      return () => clearTimeout(delayDebounceFn)
+    }
   }, [router.query.tag, searchTerm])
 
   const handleSorting = () => {
     switch (sortType) {
-      case 'Votes':
-        return (a, b) => b.score - a.score
-      case 'Views':
-        return (a, b) => b.views - a.views
       case 'Newest':
         return (a, b) => new Date(b.created) - new Date(a.created)
       case 'Oldest':
@@ -85,7 +80,7 @@ const JobPage = () => {
       />
       <ButtonGroup
         borderBottom
-        buttons={['Views', 'Newest', 'Oldest']}
+        buttons={['Newest', 'Oldest']}
         selected={sortType}
         setSelected={setSortType}
       />
@@ -97,7 +92,7 @@ const JobPage = () => {
       {console.log(jobs)}
       {jobs
         ?.sort(handleSorting())
-        .map(({ id, name, title, location, link, description }) => (
+        .map(({ id, name, title, location, link, description, created }) => (
           <JobWrapper key={id}>
             {(() => {
               return (
@@ -108,6 +103,7 @@ const JobPage = () => {
                     title={title}
                     location={location}
                     link={link}
+                    createdTime={created}
                   >
                     {description}
                     {/* To set the flag there is a problem */}

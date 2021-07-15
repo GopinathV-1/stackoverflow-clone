@@ -63,6 +63,8 @@ class Job(models.Model):
     location = models.CharField(max_length=100, blank=False)
     link = models.CharField(max_length=100, blank=False)
     description = models.TextField(blank=False)
+    created = models.DateTimeField(auto_now_add=True, blank=True)
+
     applied_by = models.ManyToManyField(User, related_name="jobs", blank=True)
 
 
