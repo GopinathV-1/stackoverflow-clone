@@ -87,9 +87,10 @@ class TeamAdmin(admin.ModelAdmin):
 
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('name', 'title', 'salary', 'location')
+    list_display = ('id', 'name', 'title', 'salary', 'location')
     list_filter = ('name', 'salary')
     search_fields = ('name',)
+
 
 # Initializing inline for user admin
 UserAdmin.inlines = [ProfileInline, TokenProxyInline]

@@ -3,12 +3,10 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { publicFetch } from '../util/fetcher'
-import Link from 'next/link'
 
 import Layout from '../components/layout'
 import QuestionWrapper from '../components/question/question-wrapper'
-import QuestionStats from '../components/question/question-stats'
-import QuestionSummary from '../components/question/question-summary'
+
 import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
@@ -24,7 +22,6 @@ const JobPage = () => {
   const [searchTerm, setSearchTerm] = useState(null)
   const [loading, setLoading] = useState(false)
 
-
   //  let there is no problem
   let flag = 1
 
@@ -35,25 +32,21 @@ const JobPage = () => {
         setJobs(data)
       }
       fetchJob()
-      } else {
-        const delayDebounceFn = setTimeout(async () => {
-          setLoading(true)
-          const { data } = await publicFetch.get(
-            searchTerm ? `/jobs/${searchTerm}` : `/title`
-          )
-          setJobs(data)
-          setLoading(false)
-        }, 500)
-        return () => clearTimeout(delayDebounceFn)
-      }
+    } else {
+      const delayDebounceFn = setTimeout(async () => {
+        setLoading(true)
+        const { data } = await publicFetch.get(
+          searchTerm ? `/jobs/search/${searchTerm}` : `/title`
+        )
+        setJobs(data)
+        setLoading(false)
+      }, 500)
+      return () => clearTimeout(delayDebounceFn)
+    }
   }, [router.query.tag, searchTerm])
 
   const handleSorting = () => {
     switch (sortType) {
-      case 'Votes':
-        return (a, b) => b.score - a.score
-      case 'Views':
-        return (a, b) => b.views - a.views
       case 'Newest':
         return (a, b) => new Date(b.created) - new Date(a.created)
       case 'Oldest':
@@ -87,7 +80,7 @@ const JobPage = () => {
       />
       <ButtonGroup
         borderBottom
-        buttons={['Views', 'Newest', 'Oldest']}
+        buttons={['Newest', 'Oldest']}
         selected={sortType}
         setSelected={setSortType}
       />
@@ -99,9 +92,10 @@ const JobPage = () => {
       {console.log(jobs)}
       {jobs
         ?.sort(handleSorting())
-        .map(({ id, name, title, location, link, description }) => (
+        .map(({ id, name, title, location, link, description, created }) => (
           <JobWrapper key={id}>
             {(() => {
+              flag = 0
               return (
                 <>
                   <JobSummary
@@ -110,10 +104,9 @@ const JobPage = () => {
                     title={title}
                     location={location}
                     link={link}
+                    createdTime={created}
                   >
-                    {description}
                     {/* To set the flag there is a problem */}
-                    {(flag = 0)}
                   </JobSummary>
                 </>
               )
