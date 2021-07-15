@@ -17,12 +17,12 @@ import { Spinner } from '../../components/icons'
 const JobDetail = ({ JobId }) => {
   const [job, setJob] = useState(null)
   const [answerSortType, setAnswersSortType] = useState('Votes')
-
+  console.log(JobId)
   useEffect(() => {
     const fetchJob = async () => {
       const { data } = await publicFetch.get(`/jobs/${JobId}`)
       setJob(data)
-      console.log(data)
+      console.log(data,'data hai')
     }
 
     fetchJob()

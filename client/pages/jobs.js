@@ -36,7 +36,7 @@ const JobPage = () => {
       const delayDebounceFn = setTimeout(async () => {
         setLoading(true)
         const { data } = await publicFetch.get(
-          searchTerm ? `/jobs/${searchTerm}` : `/title`
+          searchTerm ? `/jobs/search/${searchTerm}` : `/title`
         )
         setJobs(data)
         setLoading(false)
@@ -95,6 +95,7 @@ const JobPage = () => {
         .map(({ id, name, title, location, link, description, created }) => (
           <JobWrapper key={id}>
             {(() => {
+              flag = 0
               return (
                 <>
                   <JobSummary

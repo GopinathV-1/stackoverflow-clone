@@ -632,5 +632,6 @@ class JobDetail(APIView):
 
     def get(self, request, job_id):
         job = Job.objects.filter(id=job_id)
+        print('*******', job)
         job_detail = JobSerializer(job, many=True)
         return Response(job_detail.data)
