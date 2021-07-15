@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from stackoverflow.helper import attach_profile, calculate_expiry
 from stackoverflow.models import (Answer, Comment, Job, Question, Tag, Team,
-                                  Vote)
+                                  Technologies, Vote)
 
 
 class UserInfoSerializer(serializers.Serializer):
@@ -283,6 +283,10 @@ class TeamSerializer(serializers.ModelSerializer):
 
 
 class JobSerializer(serializers.ModelSerializer):
+
+    technologies = Technologies()
+
+
     class Meta:
         model = Job
         fields = '__all__'

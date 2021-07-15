@@ -64,8 +64,22 @@ class Job(models.Model):
     link = models.CharField(max_length=100, blank=False)
     description = models.TextField(blank=False)
     created = models.DateTimeField(auto_now_add=True, blank=True)
-
+    role = models.CharField(max_length=200, blank=True)
+    indstry = models.CharField(max_length=50, blank=False)
     applied_by = models.ManyToManyField(User, related_name="jobs", blank=True)
+
+
+class Technologies(models.Model):
+    '''
+    Job Technologies
+    '''
+    name = models.CharField(max_length=50)
+    job = models.ManyToManyField(Job, related_name='technologies', blank=True)
+
+    def __str__(self):
+        ''' str method to return human readable string of an object '''
+
+        return "Name:{}".format(self.name)
 
 
 class Question(models.Model):

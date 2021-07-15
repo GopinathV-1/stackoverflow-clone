@@ -1,6 +1,6 @@
 from django.contrib import admin
 from stackoverflow.models import (Profile, Question, Answer,
-                                  Tag, Vote, Comment, Team, Job)
+                                  Tag, Technologies, Vote, Comment, Team, Job)
 from django.contrib.auth.admin import UserAdmin, Group
 from rest_framework.authtoken.models import TokenProxy
 
@@ -85,11 +85,24 @@ class TeamAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+@admin.register(Technologies)
+class TechnologyAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+
+class TechnologiesJobInline(admin.TabularInline):
+    '''Inline model for technologies'''
+
+    model = Technologies.job.through
+
+
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'title', 'salary', 'location')
     list_filter = ('name', 'salary')
     search_fields = ('name',)
+    inlines = [TechnologiesJobInline]
 
 
 # Initializing inline for user admin
