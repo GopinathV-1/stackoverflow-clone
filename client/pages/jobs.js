@@ -3,12 +3,10 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { publicFetch } from '../util/fetcher'
-import Link from 'next/link'
 
 import Layout from '../components/layout'
 import QuestionWrapper from '../components/question/question-wrapper'
-import QuestionStats from '../components/question/question-stats'
-import QuestionSummary from '../components/question/question-summary'
+
 import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
