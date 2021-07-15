@@ -24,7 +24,7 @@ const JobSummary = ({
         <a className={styles.link}>{title}</a>
       </Link>
       <div className={styles.excerpt}>{children}</div>
-      <div className={styles.container}>
+      <div className={styles.container1}>
         <h1 className={styles.location}>{location}</h1>
         {salary ? <p>{salary}/ Year</p> : null}
       </div>

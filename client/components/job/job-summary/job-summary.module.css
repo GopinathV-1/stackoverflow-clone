@@ -1,6 +1,8 @@
 .container {
+    margin-left: 1%;
     flex: 1 auto;
     overflow: hidden;
+    
 }
 
 .link {

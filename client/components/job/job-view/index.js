@@ -33,9 +33,6 @@ const JobView = ({
   return (
     <>
       <div className={styles.container}>
-        <Link href="/jobs/[slug]" as={`/jobs/${id}`}>
-          <a className={styles.link}>{title}</a>
-        </Link>
         <div className={styles.excerpt}>{children}</div>
         <div className={styles.footer}>
           <div className={styles.tagContainer}>

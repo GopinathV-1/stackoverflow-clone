@@ -1,3 +1,7 @@
+.container{
+  margin-left: 1.2%;
+  margin-top: -2%;
+}
 .link {
   display: block;
   font-size: 16px;
@@ -92,6 +96,6 @@
 .pre {
   margin-top: 2%;
   overflow-x: auto;
-  width: 50vw;
+  width: 80vw;
   
 }

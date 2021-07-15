@@ -30,7 +30,7 @@ const JobDetail = ({ JobId }) => {
   const isClient = typeof window === 'object'
 
   return (
-    <Layout>
+    <Layout extra={false}>
       {job?.map(({ title }) => (
         <PageTitle title={title} />
       ))}
