@@ -101,6 +101,7 @@ const JobPage = () => {
             link,
             description,
             technologies,
+            role,
             created
           }) => (
             <JobWrapper key={id}>
@@ -118,6 +119,7 @@ const JobPage = () => {
                       technologies={technologies}
                     >
                       {/* To set the flag there is a problem */}
+                      {role}
                     </JobSummary>
                   </>
                 )

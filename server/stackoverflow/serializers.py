@@ -277,14 +277,17 @@ class TeamCreateSerializer(serializers.ModelSerializer):
 
 
 class TeamSerializer(serializers.ModelSerializer):
+    '''
+    To serialize the team modal
+    '''
     class Meta:
         model = Team
         fields = '__all__'
 
 
 class TechnologyListSerializer(serializers.ModelSerializer):
-    '''To only get only the names
-    of Technology
+    '''
+    To only get only the names of Technology
     '''
 
     def to_representation(self, value):
@@ -296,7 +299,9 @@ class TechnologyListSerializer(serializers.ModelSerializer):
 
 
 class JobSerializer(serializers.ModelSerializer):
-
+    ''' 
+    To serialize the job model
+    '''
     technologies = TechnologyListSerializer(many=True, read_only=True)
 
     class Meta:

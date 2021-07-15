@@ -1,12 +1,3 @@
-.paragraph {
-  margin-top: 2%;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 16px;
-  background-color: #f0eee7;
-}
-
-
-
 .link {
   display: block;
   font-size: 16px;
@@ -76,7 +67,6 @@
 
 .aboutcontainer {
   margin: 2% 0%;
-
 }
 
 .heading {
@@ -89,10 +79,19 @@
   margin: 2% 0%;
   font-size: 15px;
 }
-.bold{
+
+.bold {
   font-weight: 600;
 }
+
 .floatcontainer {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.pre {
+  margin-top: 2%;
+  overflow-x: auto;
+  width: 50vw;
+  
 }

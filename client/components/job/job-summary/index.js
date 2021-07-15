@@ -25,13 +25,13 @@ const JobSummary = ({
       </Link>
       <div className={styles.excerpt}>{children}</div>
       <div className={styles.container}>
-        <h1 className={styles.location}>Location:{location}</h1>
+        <h1 className={styles.location}>{location}</h1>
         {salary ? <p>{salary}/ Year</p> : null}
       </div>
       <div className={styles.footer}>
         <div className={styles.tagContainer}>
           <Button href={link} primary target="_blank">
-            {name}
+            Visit Company
           </Button>
           <div className={styles.tagContainer}>
             {technologies.map((tag) => (
