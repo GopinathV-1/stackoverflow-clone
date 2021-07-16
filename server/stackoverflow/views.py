@@ -593,10 +593,13 @@ class AddTeamMember(APIView):
 
     def put(self, request, team_id, username):
         team = Team.objects.filter(id=team_id)
-        member = User.objects.filter(username=username).first().id
-        team[0].members.add(member)
-        team_detail = TeamSerializer(team, many=True)
-        return Response(team_detail.data)
+        try:
+            member = User.objects.filter(username=username).first().id
+            team[0].members.add(member)
+            team_detail = TeamSerializer(team, many=True)
+            return Response(team_detail.data)
+        except Exception:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class JobList(APIView):

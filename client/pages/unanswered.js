@@ -58,7 +58,7 @@ const UnAnsweredPage = () => {
     <Layout>
       <Head>
         <title>
-          {router.query.tag ? router.query.tag : 'Questions'} - Clone of
+          {router.query.tag ? router.query.tag : 'Unanswered'} - Clone of
           Stackoverflow
         </title>
       </Head>

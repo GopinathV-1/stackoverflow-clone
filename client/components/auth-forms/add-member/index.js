@@ -32,11 +32,13 @@ const AddForm = () => {
           )
           resetForm({})
           setIsComponentVisible(true)
+          setLoading(false)
+          window.location.href = `/team/teammembers/${href}`
         } catch (error) {
+          alert('User Not Found')
           setStatus(error.response.data.message)
+          setLoading(false)
         }
-        setLoading(false)
-        window.location.href = `/team/teammembers/${href}`
       }}
       validationSchema={Yup.object({
         username: Yup.string()
