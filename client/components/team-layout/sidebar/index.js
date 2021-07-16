@@ -25,7 +25,7 @@ const Sidebar = ({ className, ...props }) => {
     <nav className={cn(styles.sidebar, className)} {...props}>
       <NavItem
         href={`/teamv/${props.t_id}`}
-        selected={router.pathname == `{/teamv/${props.t_id}}`}
+        selected={router.pathname == `/teamv/${props.t_id}}`}
       >
         <div>
           <img
