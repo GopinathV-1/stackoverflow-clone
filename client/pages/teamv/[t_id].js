@@ -47,7 +47,7 @@ const UserDetail = ({ id }) => {
     <TeamLayout extra={false} t_id={id}>
       <Head>
         <title>
-          {router.query.tag ? router.query.tag : 'Questions'} - Clone of
+          {router.query.tag ? router.query.tag : 'Teams Question'} - Clone of
           Stackoverflow
         </title>
       </Head>
