@@ -17,7 +17,7 @@ const UserDetail = ({ id }) => {
   const [postType, setPostType] = useState('Questions')
   const [sortType, setSortType] = useState('Votes')
   const [searchTerm, setSearchTerm] = useState(null)
-
+  const t_id = id
   const router = useRouter()
 
   useEffect(() => {
@@ -101,6 +101,7 @@ const UserDetail = ({ id }) => {
                 tags={tags}
                 author={author}
                 createdTime={created}
+                t_id={t_id}
               >
                 {text}
               </QuestionSummary>

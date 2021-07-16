@@ -15,7 +15,7 @@ import AddAnswer from '../../../components/add-answer'
 import { Spinner } from '../../../components/icons'
 import TeamLayout from '../../../components/team-layout'
 
-const QuestionDetail = ({ questionId, title }) => {
+const QuestionDetail = ({ questionId, title, t_id }) => {
   const [question, setQuestion] = useState(null)
   const [answerSortType, setAnswersSortType] = useState('Votes')
 
@@ -44,7 +44,7 @@ const QuestionDetail = ({ questionId, title }) => {
   const isClient = typeof window === 'object'
 
   return (
-    <TeamLayout extra={false}>
+    <TeamLayout extra={false} t_id={t_id}>
       <Head>
         <title>{title}</title>
         <link rel="canonical" href={isClient && window.location.href}></link>
@@ -52,7 +52,7 @@ const QuestionDetail = ({ questionId, title }) => {
 
       <PageTitle title={title} button />
 
-      <DetailPageContainer>
+      <DetailPageContainer extra={false}>
         {!question && (
           <div className="loading">
             <Spinner />
@@ -166,15 +166,17 @@ const QuestionDetail = ({ questionId, title }) => {
 export async function getServerSideProps(context) {
   const slug = context.params.slug
   const questionId = slug.split('-').shift()
+  const t_id = slug?.substr(slug.indexOf('-') + 1).split('-')[0]
   const title = slug
-    ?.substr(slug.indexOf('-') + 1)
+    ?.substr(slug.indexOf('-') + 3)
     .split('-')
     .join(' ')
 
   return {
     props: {
       questionId,
-      title
+      title,
+      t_id
     }
   }
 }

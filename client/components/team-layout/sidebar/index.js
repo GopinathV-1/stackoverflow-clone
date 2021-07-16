@@ -39,7 +39,7 @@ const Sidebar = ({ className, ...props }) => {
               '?s=120&d=identicon'
             }
           />
-          
+
           <span>
             <h2 className={styles.teamname}>
               {team ? team[0]['name'] : 'loading'}

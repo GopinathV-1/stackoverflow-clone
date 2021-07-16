@@ -8,12 +8,14 @@ import Main from '../layout/main'
 
 import styles from './detail-page-container.module.css'
 
-const DetailPageContainer = ({ children }) => {
+const DetailPageContainer = ({ extra = true, children }) => {
   const size = useWindowSize()
   return (
     <div className={styles.container}>
       <Main border={false}>{children}</Main>
-      {size.width > CONST.TABLET_SIZE && <Extra marginTop={16} />}
+      {extra
+        ? size.width > CONST.TABLET_SIZE && <Extra marginTop={16} />
+        : null}
     </div>
   )
 }

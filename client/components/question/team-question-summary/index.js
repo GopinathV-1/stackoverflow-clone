@@ -13,13 +13,14 @@ const QuestionSummary = ({
   tags,
   author,
   createdTime,
+  t_id,
   children
 }) => {
   return (
     <div className={styles.container}>
       <Link
         href="/questions/team/[slug]"
-        as={`/questions/team/${id}-${slug(title)}`}
+        as={`/questions/team/${id}-${t_id}-${slug(title)}/`}
       >
         <a className={styles.link}>{title}</a>
       </Link>

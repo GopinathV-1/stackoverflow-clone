@@ -11,7 +11,7 @@ import Header from './header'
 
 import styles from './team-layout.module.css'
 
-const TeamLayout = ({ extra = true, children, t_id }) => {
+const TeamLayout = ({ extra = true, t_id, children }) => {
   const size = useWindowSize()
   return (
     <div className={styles.layout}>
