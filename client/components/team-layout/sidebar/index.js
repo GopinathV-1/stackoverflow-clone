@@ -1,4 +1,3 @@
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -64,7 +63,7 @@ const Sidebar = ({ className, ...props }) => {
       <br />
       <NavItem href="/" selected={router.pathname == '/home'}>
         <span>
-          <KeyboardBackspaceIcon /> Home
+          Home
         </span>
       </NavItem>
     </nav>
