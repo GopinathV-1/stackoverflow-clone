@@ -1,13 +1,12 @@
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 import cn from 'classnames'
-import { useState, useEffect } from 'react'
-import { route } from 'next/dist/next-server/server/router'
 import { useRouter } from 'next/router'
-
+import { useEffect, useState } from 'react'
 import { IoLockClosed } from 'react-icons/io5'
+import { publicFetch } from '../../../util/fetcher'
 import NavItem from '../../navigation/nav-item'
 import styles from './sidebar.module.css'
-import { publicFetch } from '../../../util/fetcher'
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
+
 
 const Sidebar = ({ className, ...props }) => {
   const [team, setTeam] = useState(null)
@@ -65,7 +64,7 @@ const Sidebar = ({ className, ...props }) => {
       <br />
       <NavItem href="/" selected={router.pathname == '/home'}>
         <span>
-          <KeyboardBackspaceIcon /> Back
+          <KeyboardBackspaceIcon /> Home
         </span>
       </NavItem>
     </nav>
